@@ -40,7 +40,7 @@ export default {
             let dto = {
                 appointmentId: this.appointment.id,
             }
-            axios.put(api.scheduling.predefined + '/patient', dto)
+            axios.put(api.scheduling.predefined + '/client', dto)
             .then(() => {
                 this.$toast.open('Examination successfully scheduled!')
                 this.scheduled = true

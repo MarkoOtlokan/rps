@@ -35,17 +35,17 @@ public class RatingService {
         this.pharmacyRatingRepository = pharmacyRatingRepository;
     }
 
-    public List<Drug> getPatientDrugHistory(long patientId) {
+    public List<Drug> getClientDrugHistory(long clientId) {
         Map<Long, Drug> drugMap = new HashMap<>();
-        for (var drugReservation: drugReservationService.findPatientReservationHistory(patientId)) {
+        for (var drugReservation: drugReservationService.findClientReservationHistory(clientId)) {
             drugMap.put(drugReservation.getStoredDrug().getDrug().getId(), drugReservation.getStoredDrug().getDrug());
         }
         return new ArrayList(drugMap.values());
     }
 
-    public List<Pharmacy> getPatientPharmacyHistory(long patientId) {
+    public List<Pharmacy> getClientPharmacyHistory(long clientId) {
         Map<Long, Pharmacy> pharmacyMap = new HashMap<>();
-        for (var drugReservations: drugReservationService.findPatientReservationHistory(patientId)) {
+        for (var drugReservations: drugReservationService.findClientReservationHistory(clientId)) {
             pharmacyMap.put(drugReservations.getStoredDrug().getPharmacy().getId(),
                     drugReservations.getStoredDrug().getPharmacy());
         }

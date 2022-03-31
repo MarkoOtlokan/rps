@@ -23,7 +23,7 @@ public class EmailService {
         var message = new DrugReservedMessage(emailSender, reservation);
         message.send(
                 SENDER_EMAIL,
-                reservation.getPatient().getPerson().getCredentials().getEmail(),
+                reservation.getClient().getPerson().getCredentials().getEmail(),
                 "Medication reserved."
         );
     }
@@ -47,7 +47,7 @@ public class EmailService {
         var message = new DrugDispensedMessage(emailSender,drugReservation);
         message.send(
                 SENDER_EMAIL,
-                drugReservation.getPatient().getPerson().getCredentials().getEmail(),
+                drugReservation.getClient().getPerson().getCredentials().getEmail(),
                 "Drug successfully retrieved.");
     }
 

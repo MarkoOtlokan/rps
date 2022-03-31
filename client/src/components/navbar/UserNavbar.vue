@@ -7,11 +7,11 @@
 
         <div class="collapse navbar-collapse" id="navbar-content">
             <ul class="navbar-nav mr-auto">
-                <router-link to="/patient/drugs" class="nav-link">Poruči proizvod</router-link>
+                <router-link to="/client/drugs" class="nav-link">Poruči proizvod</router-link>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/patient/feedback">Oceni proizvod ili prodavca</router-link>
+                    <router-link class="nav-link" to="/client/feedback">Oceni proizvod ili prodavca</router-link>
                 </li>
             </ul>
             <div class="nav-item dropdown">
@@ -19,7 +19,7 @@
                     Korisnik
                 </a>
                 <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbar-dropdown">
-                    <router-link class="dropdown-item" to="/patient/profile">Profil</router-link>
+                    <router-link class="dropdown-item" to="/client/profile">Profil</router-link>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" @click="logout">Odjavi se</a>
                 </div>

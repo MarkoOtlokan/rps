@@ -5,7 +5,7 @@
                 <h2>Counseling report</h2>
             </b-row>
             <b-row class="mt-1 info" align-h="center" >
-                <h6>Patient: {{counseling.patientFullName}}</h6>
+                <h6>Client: {{counseling.clientFullName}}</h6>
             </b-row>
             <b-row align-h="center" class="info">
                 <h6>Started at: {{counseling.start}}</h6>

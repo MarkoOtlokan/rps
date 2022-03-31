@@ -83,7 +83,7 @@ export default {
                 this.$router.push('/dermatologist/')
             }
             else if(role === "ROLE_PATIENT") {
-                this.$router.push('/patient')
+                this.$router.push('/client')
             }
             else if(role === "ROLE_SUPPLIER") {
               this.$router.push("/supplier");

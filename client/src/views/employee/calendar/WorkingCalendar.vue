@@ -25,7 +25,7 @@
               Pharmacy: {{selectedAppointment.pharmacy}}
             </b-row>
             <b-row>
-              Patient: {{selectedAppointment.patientFullName}}
+              Client: {{selectedAppointment.clientFullName}}
             </b-row>
             <b-row>
               Starts at: {{selectedAppointment.start}}
@@ -72,7 +72,7 @@ export default {
       return type
     },
     onEventClick(event, e){
-      if(!this.isInPast(event.appointment) && event.appointment.patientFullName !== "null null"){
+      if(!this.isInPast(event.appointment) && event.appointment.clientFullName !== "null null"){
         this.role = getRole()
         this.selectedAppointment = event.appointment
         this.$root.$emit('bv::show::modal','report-modal')
@@ -83,9 +83,9 @@ export default {
       return {
         appointmentId : element.appointmentId,
         price : element.price,
-        patientId : element.patientId,
+        clientId : element.clientId,
         pharmacyId : element.pharmacyId,
-        patientFullName : element.patientFirstName + " " + element.patientLastName,
+        clientFullName : element.clientFirstName + " " + element.clientLastName,
         start : moment(new Date(element.start)).format("MM/DD/YYYY HH:mm"),
         end : moment(new Date(element.end)).format("MM/DD/YYYY HH:mm"),
         pharmacy : element.pharmacyName
@@ -108,11 +108,11 @@ export default {
     addEvents(appointment){
       let content = "Pharmacy: <br>" + appointment.pharmacyName + "<br>"
       
-      if( appointment.patientFirstName === null)
+      if( appointment.clientFirstName === null)
         content += "<b><em> Unreserved <br>" + this.getAppointmentType() + "</b></em>"
       else
-        content += "<br>" + "Patient:<br>" 
-        + appointment.patientFirstName + " " + appointment.patientLastName
+        content += "<br>" + "Client:<br>" 
+        + appointment.clientFirstName + " " + appointment.clientLastName
 
       this.events.push({
         start : moment(new Date(appointment.start)).format("YYYY-MM-DD HH:mm"),
@@ -120,7 +120,7 @@ export default {
         title : this.getAppointmentType(),
         content: content,
         appointment: this.formAppointment(appointment),
-        class: appointment.patientFirstName != null && !this.isInPast(appointment) ? 'appointment' : '',
+        class: appointment.clientFirstName != null && !this.isInPast(appointment) ? 'appointment' : '',
       })
     },
 

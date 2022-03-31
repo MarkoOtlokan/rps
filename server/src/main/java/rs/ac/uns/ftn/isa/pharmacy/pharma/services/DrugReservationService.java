@@ -72,9 +72,9 @@ public class DrugReservationService {
     }
 
     @Transactional
-    public void reserve(DrugReservation drugReservation, long patientId) {
-        var patient = clientRepository.findById(patientId)
-                .orElseThrow(() -> new EntityNotFoundException(Client.class.getSimpleName(), patientId));
+    public void reserve(DrugReservation drugReservation, long clientId) {
+        var client = clientRepository.findById(clientId)
+                .orElseThrow(() -> new EntityNotFoundException(Client.class.getSimpleName(), clientId));
         var storedDrug = storedDrugRepository.findById(drugReservation.getStoredDrug().getId())
                 .orElseThrow(() -> new EntityNotFoundException(
                         StoredDrug.class.getSimpleName(),
@@ -83,7 +83,7 @@ public class DrugReservationService {
         if (drugReservation.isInPast()) {
             throw new DateException();
         }
-        drugReservation.setPatient(patient);
+        drugReservation.setClient(client);
         drugReservation.setStoredDrug(storedDrug);
         updateStoredDrugQuantity(drugReservation.getStoredDrug().getId(), -drugReservation.getQuantity());
         try {
@@ -95,10 +95,10 @@ public class DrugReservationService {
         }
     }
 
-    public void cancelReservation(long drugReservationId, long patientId) {
+    public void cancelReservation(long drugReservationId, long clientId) {
         var drugReservation = reservationRepository.findById(drugReservationId)
                 .orElseThrow(() -> new EntityNotFoundException(DrugReservation.class.getSimpleName(), drugReservationId));
-        if (drugReservation.getPatient().getId() != patientId) {
+        if (drugReservation.getClient().getId() != clientId) {
             throw new UserAccessException();
         }
         if (drugReservation.isInPast(1)) {
@@ -117,7 +117,7 @@ public class DrugReservationService {
         return reservationRepository.findExpired(now);
     }
 
-    public List<DrugReservation> findPatientReservations(long clientId) {
+    public List<DrugReservation> findClientReservations(long clientId) {
         return reservationRepository.findAllByClientId(clientId).stream()
                 .filter(res -> !res.isDispensed())
                 .collect(Collectors.toList());
@@ -127,7 +127,7 @@ public class DrugReservationService {
         reservationRepository.deleteById(id);
     }
 
-    public List<DrugReservation> findPatientReservationHistory(long clinetId) {
+    public List<DrugReservation> findClientReservationHistory(long clinetId) {
         return reservationRepository.findAllByClientId(clinetId).stream()
                 .filter(res -> res.isDispensed())
                 .collect(Collectors.toList());

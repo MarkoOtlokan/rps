@@ -25,7 +25,7 @@ public class ClientController {
     }
 
     @GetMapping("/profile-preview/{clientId}")
-    public ClientProfilePreviewDto getPatientProfilePreview(@PathVariable long clientId){
+    public ClientProfilePreviewDto getClientProfilePreview(@PathVariable long clientId){
         return new ClientProfilePreviewDto(clientService.get(clientId));
     }
 

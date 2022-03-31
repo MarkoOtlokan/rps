@@ -175,7 +175,7 @@ export default {
         schedulePredefined: function () {
             let appointmentReservationDto = {
                 appointmentId: parseInt(this.selectedExam),
-                patientId: this.currentAppointment.patientId
+                clientId: this.currentAppointment.clientId
             }
 
             axios.put(api.scheduling.predefined, appointmentReservationDto)
@@ -193,7 +193,7 @@ export default {
             let createdAppointmentDto = {
                 pharmacyId: this.currentAppointment.pharmacyId,
                 employeeId: getRoleId(),
-                patientId: this.currentAppointment.patientId,
+                clientId: this.currentAppointment.clientId,
                 start: this.date,
                 duration: this.getDurationString()
             }

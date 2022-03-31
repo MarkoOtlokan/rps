@@ -18,8 +18,8 @@ public class DrugReservedMessage extends EmailMessage<DrugReservation>{
                 ", quantity: {3}, from pharmacy: \"{4}\".\n Please pick up your reserved medication by specified date: {5}" +
                 "\n\nReservation identifier is: {6} \n";
         return MessageFormat.format(message,
-                entity.getPatient().getPerson().getFirstName(),
-                entity.getPatient().getPerson().getLastName(),
+                entity.getClient().getPerson().getFirstName(),
+                entity.getClient().getPerson().getLastName(),
                 entity.getStoredDrug().getDrug().getName(),
                 entity.getQuantity(),
                 entity.getStoredDrug().getPharmacy().getName(),

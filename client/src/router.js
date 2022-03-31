@@ -7,9 +7,9 @@ import PharmacistHome from './views/pharmacist/PharmacistHome.vue'
 import Login from './views/unauthorized/Login.vue'
 import ExaminationReport from './views/dermatologist/report/ExaminationReport.vue'
 import CounselingReport from './views/pharmacist/report/CounselingReport.vue'
-import ScheduleExamination from './views/patient/ScheduleExamination.vue'
-import ExaminedPatients from './views/dermatologist/patients/ExaminedPatients.vue'
-import CounseledPatients from './views/pharmacist/patients/CounseledPatients.vue'
+import ScheduleExamination from './views/client/ScheduleExamination.vue'
+import ExaminedClients from './views/dermatologist/client/ExaminedClients.vue'
+import CounseledClients from './views/pharmacist/client/CounseledClients.vue'
 import UpcomingExaminations from './views/dermatologist/examinations/UpcomingExaminations.vue'
 import UpcomingCounselings from './views/pharmacist/counselings/UpcomingCounselings.vue'
 import ExamReportStepOne from './views/dermatologist/report/steps/ExamReportStepOne.vue'
@@ -24,16 +24,16 @@ import TimeOffRequest from './views/timeoff/TimeOffRequest.vue'
 import DrugDispensing from './views/pharmacist/drug-dispensing/DrugDispensing.vue'
 import WorkingCalendar from './views/employee/calendar/WorkingCalendar.vue'
 import Profile from './views/person/Profile.vue'
-import Drugs from './views/patient/Drugs.vue'
-import Appointments from './views/patient/Appointments.vue'
-import ScheduleCounseling from './views/patient/ScheduleCounseling.vue'
-import Pharmacies from './views/patient/Pharmacies.vue'
-import PatientHome from './views/patient/PatientHome.vue'
-import PatientProfile from './views/patient/PatientProfile.vue'
-import Feedback from './views/patient/Feedback.vue'
+import Drugs from './views/client/Drugs.vue'
+import Appointments from './views/client/Appointments.vue'
+import ScheduleCounseling from './views/client/ScheduleCounseling.vue'
+import Pharmacies from './views/client/Pharmacies.vue'
+import ClientHome from './views/client/ClientHome.vue'
+import ClientProfile from './views/client/ClientProfile.vue'
+import Feedback from './views/client/Feedback.vue'
 import Registration from './views/unauthorized/Registration'
-import ExaminationHistory from './views/patient/ExaminationHistory.vue'
-import CounselingHistory from './views/patient/CounselingHistory.vue'
+import ExaminationHistory from './views/client/ExaminationHistory.vue'
+import CounselingHistory from './views/client/CounselingHistory.vue'
 import DrugSearch from "@/views/DrugSearch";
 import ComplaintResponse from "@/views/sysadmin/ComplaintResponse";
 import SysAdminHome from "@/views/sysadmin/SysAdminHome";
@@ -98,9 +98,9 @@ const router = new VueRouter({
                     meta: { requiresDermaAuth: true}
                 },
                 {
-                    path: 'examined-patients',
-                    name: 'examined-patients',
-                    component: ExaminedPatients,
+                    path: 'examined-clients',
+                    name: 'examined-clients',
+                    component: ExaminedClients,
                     meta: { requiresDermaAuth: true}
                 },
                 {
@@ -237,9 +237,9 @@ const router = new VueRouter({
                     meta: { requiresPharmaAuth: true }
                 },
                 {
-                    path: 'counseled-patients',
-                    name: 'counseled-patients',
-                    component: CounseledPatients,
+                    path: 'counseled-clients',
+                    name: 'counseled-clients',
+                    component: CounseledClients,
                     meta: { requiresPharmaAuth: true }
                 },
                 {
@@ -303,9 +303,9 @@ const router = new VueRouter({
             ]
         },
         {
-            path: '/patient',
-            component: PatientHome,
-            meta: { requiresPatientAuth: true },
+            path: '/client',
+            component: ClientHome,
+            meta: { requiresClientAuth: true },
             children: [
                 {
                     path: '',
@@ -313,7 +313,7 @@ const router = new VueRouter({
                 },
                 {
                     path: 'profile',
-                    component: PatientProfile
+                    component: ClientProfile
                 },
                 {
                     path: 'appointments',
@@ -358,7 +358,7 @@ router.beforeEach((to, from, next) => {
                 next({ name: 'upcoming-counselings' });
             }
             else if (getRole() === 'ROLE_PATIENT') {
-                next({ path: '/patient'});
+                next({ path: '/client'});
             }
             else if (getRole() === 'ROLE_SYS_ADMIN') {
                 next({ path:'/sys' });
@@ -382,7 +382,7 @@ router.beforeEach((to, from, next) => {
         }
         else next();
     }
-    else if(to.matched.some(record => record.meta.requiresPatientAuth)) {
+    else if(to.matched.some(record => record.meta.requiresClientAuth)) {
         if (getRole() !== 'ROLE_PATIENT') {
             next({ name: 'insufficient-permissions' })
         }
@@ -399,7 +399,7 @@ router.beforeEach((to, from, next) => {
             next({ name: 'insufficient-permissions' })
         }
         if (getRole() === "ROLE_PATIENT") {
-            next( { path: "patient/drugs"} )
+            next( { path: "client/drugs"} )
         }
         else next();
     }

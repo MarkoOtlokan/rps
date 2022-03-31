@@ -9,7 +9,7 @@
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
                 <b-nav-item class="ml-4" to="/pharmacist">Upcoming Counselings</b-nav-item>
-                <b-nav-item class="ml-4" to="/pharmacist/counseled-patients">Counseled Patients</b-nav-item>
+                <b-nav-item class="ml-4" to="/pharmacist/counseled-clients">Counseled Clients</b-nav-item>
                 <b-nav-item class="ml-4" to="/pharmacist/drug-dispensing">Drug dispensing</b-nav-item>
             </b-navbar-nav>
 

@@ -30,7 +30,7 @@ public class PersistenceExceptionHandler {
     @ResponseBody
     @ExceptionHandler(UserAccessException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String patientAppointmentHandler(UserAccessException e){
+    String clientAppointmentHandler(UserAccessException e){
         return e.getMessage();
     }
 

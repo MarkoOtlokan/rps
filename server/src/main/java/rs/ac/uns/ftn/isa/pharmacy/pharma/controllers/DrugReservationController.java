@@ -50,9 +50,9 @@ public class DrugReservationController {
 
     @GetMapping()
     @Secured(Role.PATIENT)
-    public List<DrugReservationDto> findPatientReservations(HttpServletRequest request) {
+    public List<DrugReservationDto> findClientReservations(HttpServletRequest request) {
         IdentityProvider identityProvider = HttpRequestUtil.getIdentity(request);
-        return drugReservationService.findPatientReservations(identityProvider.getRoleId()).stream()
+        return drugReservationService.findClientReservations(identityProvider.getRoleId()).stream()
                 .map(DrugReservationMapper::objectToDto)
                 .collect(Collectors.toList());
     }

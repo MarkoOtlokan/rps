@@ -7,7 +7,7 @@
 <script>
 import axios from 'axios'
 import { api } from '../../api.js'
-import History from '../../components/patient/appointments/History.vue'
+import History from '../../components/client/appointments/History.vue'
 import { compareAsc, compareDesc } from 'date-fns'
 
 export default {
@@ -23,7 +23,7 @@ export default {
         History
     },
     mounted: function () {
-        axios.get(api.appointments.patientHistory.examinations)
+        axios.get(api.appointments.clientHistory.counselings)
         .then(response => {
             this.appointments = response.data
         })

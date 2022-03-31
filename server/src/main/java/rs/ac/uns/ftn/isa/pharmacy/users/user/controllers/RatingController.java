@@ -29,11 +29,11 @@ public class RatingController {
 
     @GetMapping
     @Secured(Role.PATIENT)
-    public RateableEntitiesDto getPatientPharmacistHistory(HttpServletRequest request) {
+    public RateableEntitiesDto getClientPharmacistHistory(HttpServletRequest request) {
         IdentityProvider identityProvider = HttpRequestUtil.getIdentity(request);
         return RateableEntitiesMapper.objectsToDto(
-                ratingService.getPatientDrugHistory(identityProvider.getRoleId()),
-                ratingService.getPatientPharmacyHistory(identityProvider.getRoleId())
+                ratingService.getClientDrugHistory(identityProvider.getRoleId()),
+                ratingService.getClientPharmacyHistory(identityProvider.getRoleId())
         );
     }
 

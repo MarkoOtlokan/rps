@@ -26,8 +26,8 @@ public class ClientService {
     }
 
 
-    public Client get(long patientId){
-        return clientRepository.getOne(patientId);
+    public Client get(long clientId){
+        return clientRepository.getOne(clientId);
     }
 
     public Client update(Client client, long id) {
@@ -47,7 +47,7 @@ public class ClientService {
             throws EntityExistsException, rs.ac.uns.ftn.isa.pharmacy.supply.exceptions.EntityNotFoundException,
             InvalidEntityException
     {
-        Person person = registrationService.registerPatient(dto);
+        Person person = registrationService.registerClient(dto);
         Client client = new Client();
         client.setPerson(person);
         clientRepository.save(client);

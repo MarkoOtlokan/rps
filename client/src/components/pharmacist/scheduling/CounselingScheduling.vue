@@ -99,7 +99,7 @@ export default {
             let createdAppointmentDto = {
                 pharmacyId: this.currentAppointment.pharmacyId,
                 employeeId: getRoleId(),
-                patientId: this.currentAppointment.patientId,
+                clientId: this.currentAppointment.clientId,
                 start: this.date,
                 duration: this.getDurationString()
             }

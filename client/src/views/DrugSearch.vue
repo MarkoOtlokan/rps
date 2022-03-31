@@ -179,7 +179,7 @@ export default {
   },
   methods: {
     search: function () {
-      axios.get(api.drugs.patientSearch + '/' + this.searchString)
+      axios.get(api.drugs.clientSearch + '/' + this.searchString)
           .then(response => {
             this.allDrugs = response.data;
             this.displayedDrugs = this.allDrugs

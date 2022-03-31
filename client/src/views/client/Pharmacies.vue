@@ -32,7 +32,7 @@
 
               <div class="row ml-1 mt-2">
                   <p class="float-left text-dark
-                  pl-4 pr-4 pt-2 pb-2 bg-warning" v-if="isPatient">Tvoje prodavnice:</p>
+                  pl-4 pr-4 pt-2 pb-2 bg-warning" v-if="isClient">Tvoje prodavnice:</p>
                 </div>
                 <div>
                   <table class="w-100">
@@ -93,15 +93,15 @@ export default {
             nameSearch: '',
             citySearch: '',
             subscribedPharmacies: [],
-            isPatient: false
+            isClient: false
         }
     },
     components: {
         StarRating,
     },
     mounted: function () {
-        this.isPatient = getRole() === "ROLE_PATIENT";
-        if (this.isPatient) {
+        this.isClient = getRole() === "ROLE_PATIENT";
+        if (this.isClient) {
           this.getSubscribedPharmacies();
         }
         axios.get(api.pharmacies.root)
@@ -113,7 +113,7 @@ export default {
     },
     methods: {
         schedule: function (pharmacyId) {
-            this.$router.push('/patient/schedule/examination/' + pharmacyId)
+            this.$router.push('/client/schedule/examination/' + pharmacyId)
         },
         reset: function () {
             this.filteredPharmacies = this.pharmacies

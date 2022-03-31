@@ -63,8 +63,8 @@ public class DrugController {
         return ResponseEntity.ok(searchResult);
     }
 
-    @GetMapping("/patient-search/{drugName}")
-    public List<DrugSearchDto> patientSearch(@PathVariable String drugName) {
+    @GetMapping("/client-search/{drugName}")
+    public List<DrugSearchDto> clientSearch(@PathVariable String drugName) {
         return drugService.searchByName(drugName).stream()
                 .map(DrugSearchMapper::objectToDto)
                 .collect(Collectors.toList());

@@ -9,7 +9,7 @@
         <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
                 <b-nav-item class="ml-4" to="/dermatologist">Upcoming Examinations</b-nav-item>
-                <b-nav-item class="ml-4" to="/dermatologist/examined-patients">Examined Patients</b-nav-item>
+                <b-nav-item class="ml-4" to="/dermatologist/examined-clients">Examined Clients</b-nav-item>
             </b-navbar-nav>
 
             <b-navbar-nav class="ml-auto">

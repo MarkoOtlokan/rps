@@ -17,7 +17,7 @@ import moment from 'moment'
 export default {
     name: 'AppointmentHistory',
     props: {
-        patientId: Number,
+        clientId: Number,
         appointmentType: String
     },
     data() {
@@ -41,12 +41,12 @@ export default {
                 this.fetchCounselingHistory()
         },
         fetchExaminationHistory:function(){
-            axios.get(api.appointments.history.examinations + this.patientId).then(res=>{
+            axios.get(api.appointments.history.examinations + this.clientId).then(res=>{
                 this.fillAppointments(res.data)
             })
         },
         fetchCounselingHistory:function(){
-            axios.get(api.appointments.history.counselings + "?patientId=" + this.patientId)
+            axios.get(api.appointments.history.counselings + "?clientId=" + this.clientId)
             .then(res=>{
                 this.fillAppointments(res.data)
             })

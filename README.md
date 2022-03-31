@@ -56,6 +56,6 @@ Nakon prvog pokretanja projekta tabele u bazi će biti kreirane i može se iskor
         suppliersupplierovsky@mail.com
         password
     - Pacijent
-        patient@mail.com
+        client@mail.com
         password
     

@@ -69,11 +69,11 @@ public class PromotionService {
         }
     }
 
-    public boolean isPatientSubscribed(long personId, long pharmacyId) {
+    public boolean isClientSubscribed(long personId, long pharmacyId) {
         return subscriptionRepository.countByPharmacyAndPerson(pharmacyId, personId) > 0;
     }
 
-    public List<Subscription> getSubscribedPharmaciesForPatient(long personId) {
+    public List<Subscription> getSubscribedPharmaciesForClient(long personId) {
         return subscriptionRepository.getByPerson(personId);
     }
 }

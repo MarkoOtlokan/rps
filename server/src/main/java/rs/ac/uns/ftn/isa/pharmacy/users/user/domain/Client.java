@@ -15,15 +15,15 @@ public class Client {
     private long id;
     @OneToOne
     private Person person;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
 //    private List<Appointment> appointments;
 //    @ManyToMany
 //    private List<Drug> allergicTo;
 //    private int penalties;
 
 //    public Boolean canSchedule(Appointment appointment){
-//        for(var patientAppointment:appointments)
-//            if(appointment.overlaps(patientAppointment.getTerm()))
+//        for(var clientAppointment:appointments)
+//            if(appointment.overlaps(clientAppointment.getTerm()))
 //                return false;
 //        return true;
 //    }

@@ -76,7 +76,7 @@ export default {
             axios.get(api.storedDrugs.isAvailable + '?pharmacyId=' + this.appointment.pharmacyId
                         + '&drugId=' + this.drug.id)
             .then(res=>{
-                this.checkIfPatientIsAllergic()
+                this.checkIfClientIsAllergic()
             })
             .catch(err=>{
                 if(err.response.status === 417){
@@ -86,8 +86,8 @@ export default {
                 }
             })
         },
-        checkIfPatientIsAllergic(){
-            axios.get(api.patients.isAllergic + '?patientId=' + this.appointment.patientId
+        checkIfClientIsAllergic(){
+            axios.get(api.clients.isAllergic + '?clientId=' + this.appointment.clientId
                         + '&drugId=' + this.drug.id)
             .then(res=>{
                 this.checkFinished=true
@@ -95,7 +95,7 @@ export default {
             .catch(err=>{
                  if(err.response.status === 417){
                     this.alternatives = err.response.data
-                    this.errText = this.appointment.patientFullName
+                    this.errText = this.appointment.clientFullName
                      + " is allergic to " + this.drug.name
                      this.checkFinished = true
                 }

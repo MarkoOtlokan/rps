@@ -35,7 +35,7 @@ public class RegistrationService {
         this.emailService = emailService;
     }
 
-    public Person registerPatient(RegistrationDto dto)
+    public Person registerClient(RegistrationDto dto)
             throws EntityExistsException, EntityNotFoundException, InvalidEntityException
     {
         return register(dto, Role.PATIENT);

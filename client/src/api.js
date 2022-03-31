@@ -8,7 +8,7 @@ let appointments = '/api/appointments'
 let drugs = '/api/drugs'
 let employees = '/api/employees'
 let scheduling = '/api/schedule'
-let patients = '/api/patients'
+let clients = '/api/clients'
 let person = '/api/person'
 let storedDrugs = '/api/stored-drugs'
 let timeOff = '/api/time-off'
@@ -34,7 +34,7 @@ export const api = {
         root: host + appointments,
         free: host + appointments + '/free-examinations',
         all: host + appointments + '/all',
-        patient: host + appointments + '/patient',
+        client: host + appointments + '/client',
         cancel: host + appointments + '/cancel',
         upcoming: host + appointments + '/upcoming/',
         appointmentReport: host + appointments + '/appointment-report',
@@ -43,19 +43,19 @@ export const api = {
             counseling: host + appointments + '/counselings/free-up/'
         },
         history: {
-            examinations: host + appointments + '/examinations/patient-history/',
-            counselings: host + appointments + '/counselings/patient-history/'
+            examinations: host + appointments + '/examinations/client-history/',
+            counselings: host + appointments + '/counselings/client-history/'
         },
-        patientHistory: {
-            examinations: host + appointments + '/patient/examination-history',
-            counselings: host + appointments + '/patient/counseling-history'
+        clientHistory: {
+            examinations: host + appointments + '/client/examination-history',
+            counselings: host + appointments + '/client/counseling-history'
         }
         
     },
     drugs: {
         root: host + drugs,
         search: host + drugs + '/search',
-        patientSearch: host + drugs + '/patient-search',
+        clientSearch: host + drugs + '/client-search',
         reservations: host + drugs + '/reservations/',
         dispense: host + drugs + '/reservations/dispense/',
         simple: host + drugs + '/simple'
@@ -74,15 +74,15 @@ export const api = {
         predefined: host + scheduling + '/predefined',
         newExamination: host + scheduling + '/examination',
         newCounseling: host + scheduling + '/counseling',
-        patientCounseling: host + scheduling + '/counseling/patient',
+        clientCounseling: host + scheduling + '/counseling/client',
         findPharmacists: host + scheduling + '/counseling/pharmacists'
     },
-    patients: {
-        root: host + patients,
-        appointed: host + patients + '/appointed',
-        profilePreview: host + patients + '/profile-preview/',
-        isAllergic: host + patients + '/is-allergic',
-        allergies: host + patients + '/allergies'
+    clients: {
+        root: host + clients,
+        appointed: host + clients + '/appointed',
+        profilePreview: host + clients + '/profile-preview/',
+        isAllergic: host + clients + '/is-allergic',
+        allergies: host + clients + '/allergies'
     },
     person: {
         root: host + person,

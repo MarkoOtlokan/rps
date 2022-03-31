@@ -153,7 +153,7 @@ export default {
                 employeeId: this.selectedPharmacist.id,
                 start: this.date,
             }
-            axios.post(api.scheduling.patientCounseling, dto)
+            axios.post(api.scheduling.clientCounseling, dto)
             .then(() => {
                 this.$toast.open("Counseling successfully scheduled.")
                 this.pharmacists = []

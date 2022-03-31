@@ -15,8 +15,8 @@ public class DrugDispensedMessage extends EmailMessage<DrugReservation>{
         String message = "Dear {0} {1}, \n\nYou have successfully retrieved {2}" +
                 ", quantity: {3}, from pharmacy: \"{4}\".";
         return MessageFormat.format(message,
-                entity.getPatient().getPerson().getFirstName(),
-                entity.getPatient().getPerson().getLastName(),
+                entity.getClient().getPerson().getFirstName(),
+                entity.getClient().getPerson().getLastName(),
                 entity.getStoredDrug().getDrug().getName(),
                 entity.getQuantity(),
                 entity.getStoredDrug().getPharmacy().getName()

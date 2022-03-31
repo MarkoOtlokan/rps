@@ -77,10 +77,10 @@ public class PromotionController {
 
     @GetMapping("subscribed/{pharmacyId}")
     @Secured(Role.PATIENT)
-    public ResponseEntity<Boolean> isPatientSubscribed(HttpServletRequest request, @PathVariable long pharmacyId) {
+    public ResponseEntity<Boolean> isClientSubscribed(HttpServletRequest request, @PathVariable long pharmacyId) {
         IdentityProvider identityProvider = HttpRequestUtil.getIdentity(request);
-        long patientId = identityProvider.getPersonId();
-        return ResponseEntity.ok(promotionService.isPatientSubscribed(patientId, pharmacyId));
+        long clientId = identityProvider.getPersonId();
+        return ResponseEntity.ok(promotionService.isClientSubscribed(clientId, pharmacyId));
     }
 
     @GetMapping("subscribed")
@@ -88,7 +88,7 @@ public class PromotionController {
     public ResponseEntity<List<SubscriptionOverviewDto>> getSubscribedPharmacies(HttpServletRequest request) {
         IdentityProvider identityProvider = HttpRequestUtil.getIdentity(request);
         return ResponseEntity.ok(
-                promotionService.getSubscribedPharmaciesForPatient(identityProvider.getPersonId())
+                promotionService.getSubscribedPharmaciesForClient(identityProvider.getPersonId())
                     .stream()
                     .map(SubscriptionMapper::objectToDto)
                     .collect(Collectors.toList())

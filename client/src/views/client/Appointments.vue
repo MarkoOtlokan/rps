@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ScheduledAppointment from '../../components/patient/appointments/ScheduledAppointment.vue'
+import ScheduledAppointment from '../../components/client/appointments/ScheduledAppointment.vue'
 import axios from 'axios'
 import { api } from '../../api.js'
 
@@ -23,7 +23,7 @@ export default {
     },
     methods: {
         fetchAppointments: function () {
-            axios.get(api.appointments.patient)
+            axios.get(api.appointments.client)
             .then(response => {
                 this.appointments = response.data
             })

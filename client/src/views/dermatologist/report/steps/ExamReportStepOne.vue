@@ -1,7 +1,7 @@
 <template>
     <b-col>
         <b-row align-h="center" class="mt-5"> 
-            <h3>Patient shown up?</h3>
+            <h3>Client shown up?</h3>
         </b-row>
         <b-row align-h="center" class="mt-4" >
             <b-col sm="1">

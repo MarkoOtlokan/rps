@@ -29,12 +29,12 @@ public class DrugReservation {
         this.id = id;
     }
 
-    public Client getPatient() {
+    public Client getClient() {
         return client;
     }
 
-    public void setPatient(Client patient) {
-        this.client = patient;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public StoredDrug getStoredDrug() {

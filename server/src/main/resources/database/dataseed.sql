@@ -51,21 +51,29 @@ values (2, 200, "Zegin", "Zegin", 2);
 
 insert into isa.persons (id, pid, date_of_birth, first_name, gender, last_name, phone_number, address_id)
 values (1,"0112998091229", "2000-1-1", "Sam", 0, "Hunter", "05123123123", 3);
-insert into isa.patients (id,person_id,penalties) values (1,1,3);
+insert into isa.clients (id,person_id,penalties) values (1,1,3);
 insert into isa.credentials (email,username,is_activated,has_changed_initial_password,password,role,uid,person_id) 
 values ("samhunter@gmail.com","samhunter",1,1,"password","ROLE_PATIENT",'337d2368-8bb0-46a5-a33a-7a0fd98d262f',1);
 update isa.persons set credentials_email="samhunter@gmail.com" where id=1;
 
 insert into isa.persons (id, pid, date_of_birth, first_name, gender, last_name, phone_number, address_id)
+values (13,"0708998800172", "2000-1-1", "Marko", 0, "Otlokan", "05123123123", 3);
+insert into isa.clients (id,person_id) values (13, 3);
+insert into isa.credentials (email,username,is_activated,has_changed_initial_password,password,role,uid,person_id)
+values ("otlokanmarko@gmail.com","tloken",1,1,"pas","ROLE_CLIENT",'337d2368-8bb0-33a5-a33a-7a0fd98d262f',13);
+update isa.persons set credentials_email="otlokanmarko@gmail.com" where id=13;
+
+
+insert into isa.persons (id, pid, date_of_birth, first_name, gender, last_name, phone_number, address_id)
 values (2,"021099911229", "1998-2-2", "John", 0, "Doe", "0642025209", 4);
-insert into isa.patients (id,person_id,penalties) values (2,2,0);
+insert into isa.clients (id,person_id,penalties) values (2,2,0);
 insert into isa.credentials (email,username,is_activated,has_changed_initial_password,password,role,uid,person_id) 
 values ("johndoe@gmail.com","johndoe",1,1,"password","ROLE_PATIENT",'a4881085-96dc-4124-a3b7-34d48459791f',2);
 update isa.persons set credentials_email="johndoe@gmail.com" where id=2;
 
 insert into isa.persons (id, pid, date_of_birth, first_name, gender, last_name, phone_number, address_id)
 values (3,"041199310218", "1998-3-4", "Keith", 0, "Smith", "0631212319", 5);
-insert into isa.patients (id,person_id,penalties) values (3,3,0);
+insert into isa.clients (id,person_id,penalties) values (3,3,0);
 insert into isa.credentials (email,username,is_activated,has_changed_initial_password,password,role,uid,person_id) 
 values ("keithsmith@gmail.com","keithsmith",1,1,"password","ROLE_PATIENT",'6f822cc2-a137-4be5-9f34-9d38a252b948',3);
 update isa.persons set credentials_email="keithsmith@gmail.com" where id=3;
@@ -134,23 +142,23 @@ values (7, "2021-01-16 8:00:00", "2021-01-16 15:00:00", 2,1);
 insert into isa.shifts (id, start, end, pharmacy_id,employee_id)
 values (8, "2021-01-17 8:00:00", "2021-01-17 15:00:00", 2,1);
 
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (1, 1300, 1800000000000, "2021-01-10 9:40:00", 1, 1, 1);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (2, 1300, 1800000000000, "2021-01-10 10:30:00", 1, 2, 1);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (3, 750, 1800000000000, "2021-01-10 11:40:00", 1, 3, 1);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (4, 1200, 1800000000000, "2021-01-11 9:40:00", 1, 1, 2);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (5, 1100, 1800000000000, "2021-01-11 10:30:00", 1, 2, 2);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (6, 990, 1800000000000, "2021-01-11 11:40:00", 1, 3, 2);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (7, 1660, 1800000000000, "2021-01-12 9:40:00", 1, 1, 3);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (8, 2200, 1800000000000, "2021-01-12 10:30:00", 1, 2, 3);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (9, 1980, 1800000000000, "2021-01-12 11:40:00", 1, 3, 3);
 
 
@@ -205,23 +213,23 @@ values (32, "2021-02-08 14:00:00", "2021-02-08 20:00:00", 2,3);
 insert into isa.shifts (id, start, end, pharmacy_id,employee_id)
 values (33, "2021-02-09 14:00:00", "2021-02-09 20:00:00", 2,3);
 
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (10, 0, 1800000000000, "2021-02-01 14:30:00", 0, 1, 25);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (11, 0, 1800000000000, "2021-02-01 15:30:00", 0, 2, 25);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (12, 0, 1800000000000, "2021-02-01 17:30:00", 0, 3, 25);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (13, 0, 1800000000000, "2021-02-02 14:30:00", 0, 1, 26);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (14, 0, 1800000000000, "2021-02-02 15:30:00", 0, 2, 26);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (15, 0, 1800000000000, "2021-02-02 17:30:00", 0, 3, 26);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (16, 0, 1800000000000, "2021-02-03 14:30:00", 0, 1, 27);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (17, 0, 1800000000000, "2021-02-03 15:30:00", 0, 2, 27);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (18, 0, 1800000000000, "2021-02-03 17:30:00", 0, 3, 27);
 
 
@@ -253,49 +261,49 @@ values (44, "2021-03-04 12:00:00", "2021-03-04 18:00:00", 2,1);
 insert into isa.shifts (id, start, end, pharmacy_id,employee_id)
 values (45, "2021-03-06 12:00:00", "2021-03-06 18:00:00", 2,1);
 
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (19, 1500, 1800000000000, "2021-02-20 13:00:00", 1, null, 39);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (20, 1320, 1800000000000, "2021-02-20 15:00:00", 1, null, 39);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (21, 2200, 1800000000000, "2021-02-20 16:00:00", 1, null, 39);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (22, 2340, 1800000000000, "2021-02-20 17:00:00", 1, null, 39);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (23, 1500, 1800000000000, "2021-02-22 13:00:00", 1, null, 40);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (24, 1320, 1800000000000, "2021-02-22 15:00:00", 1, null, 40);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (25, 2200, 1800000000000, "2021-02-22 16:00:00", 1, null, 40);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (26, 2340, 1800000000000, "2021-02-22 17:00:00", 1, null, 40);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (27, 1500, 1800000000000, "2021-02-28 13:00:00", 1, null, 42);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (28, 1320, 1800000000000, "2021-02-28 15:00:00", 1, null, 42);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (29, 2200, 1800000000000, "2021-02-28 16:00:00", 1, null, 42);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (30, 2340, 1800000000000, "2021-02-28 17:00:00", 1, null, 42);
 
 
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (31, 2200, 1800000000000, "2021-02-24 12:30:00", 1, 1, 41);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (32, 1250, 1800000000000, "2021-02-24 14:30:00", 1, 2, 41);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (33, 2150, 1800000000000, "2021-02-24 16:30:00", 1, 3, 41);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (34, 2200, 1800000000000, "2021-03-02 12:30:00", 1, 1, 43);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (35, 1250, 1800000000000, "2021-03-02 14:30:00", 1, 2, 43);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (36, 2150, 1800000000000, "2021-03-02 16:30:00", 1, 3, 43);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (37, 2200, 1800000000000, "2021-03-04 12:30:00", 1, 1, 44);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (38, 1250, 1800000000000, "2021-03-04 14:30:00", 1, 2, 44);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 values (39, 2150, 1800000000000, "2021-03-04 16:30:00", 1, 3, 44);
 
 
@@ -367,9 +375,9 @@ insert into isa.drugs_alternatives (drug_id,alternatives_id) values (3,2);
 insert into isa.drugs_alternatives (drug_id,alternatives_id) values (6,7);
 insert into isa.drugs_alternatives (drug_id,alternatives_id) values (7,6);
 
-insert into isa.patients_allergic_to (patient_id,allergic_to_id) values (1,1);
-insert into isa.patients_allergic_to (patient_id,allergic_to_id) values (2,2);
-insert into isa.patients_allergic_to (patient_id,allergic_to_id) values (3,3);
+insert into isa.clients_allergic_to (client_id,allergic_to_id) values (1,1);
+insert into isa.clients_allergic_to (client_id,allergic_to_id) values (2,2);
+insert into isa.clients_allergic_to (client_id,allergic_to_id) values (3,3);
 
 
 insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id, version)
@@ -409,11 +417,11 @@ values (2, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac 
 insert into isa.appointment_reports (id, appointment_info, appointment_id)
 values (3, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac sem erat. Sed dui neque, aliquam rhoncus fermentum vitae, facilisis quis metus.", 10);
 
-insert into isa.drug_reservations (id, is_dispensed, pick_up_before, quantity, patient_id, stored_drug_id)
+insert into isa.drug_reservations (id, is_dispensed, pick_up_before, quantity, client_id, stored_drug_id)
 values (1, true, "2021-1-5", 2, 1, 1);
-insert into isa.drug_reservations (id, is_dispensed, pick_up_before, quantity, patient_id, stored_drug_id)
+insert into isa.drug_reservations (id, is_dispensed, pick_up_before, quantity, client_id, stored_drug_id)
 values (2, true, "2021-1-6", 3, 2, 1);
-insert into isa.drug_reservations (id, is_dispensed, pick_up_before, quantity, patient_id, stored_drug_id)
+insert into isa.drug_reservations (id, is_dispensed, pick_up_before, quantity, client_id, stored_drug_id)
 values (3, true, "2021-1-6", 3, 2, 2);
 
 -- asd
@@ -476,15 +484,15 @@ select * from isa.appointments;
 insert into isa.persons (id, pid, date_of_birth, first_name, gender, last_name, phone_number, address_id)
 	values (82,"1532123324", "1980-1-1", "Pacijent", 0, "Pacijentovski", "2130320", 3);
 insert into isa.credentials(email, has_changed_initial_password, is_activated, password, role, uid, username, person_id)
-	values("patient@mail.com", 0, 1, "password", "ROLE_PATIENT", "6f822ac3-b257-4be5-9f34-9d38a252b9ff", "patient", 82);
-update isa.persons set credentials_email="patient@mail.com" where id=82;
-insert into isa.patients(id, penalties, person_id) values(4, 0, 82);
+	values("client@mail.com", 0, 1, "password", "ROLE_PATIENT", "6f822ac3-b257-4be5-9f34-9d38a252b9ff", "client", 82);
+update isa.persons set credentials_email="client@mail.com" where id=82;
+insert into isa.clients(id, penalties, person_id) values(4, 0, 82);
 
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 	values (80, 1300, 1800000000000, "2021-01-10 9:40:00", 1, 4, 1);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 	values (81, 200, 1800000000000, "2021-01-10 9:40:00", 1, 4, 2);
-insert into isa.appointments (id, amount, duration, start, type, patient_id, shift_id)
+insert into isa.appointments (id, amount, duration, start, type, client_id, shift_id)
 	values (82, 13500, 1800000000000, "2021-01-10 9:40:00", 1, 4, 3);
 
 insert into isa.appointment_reports(id, appointment_info, appointment_id) values(4, "Obican pregled za pacijenta.", 80);

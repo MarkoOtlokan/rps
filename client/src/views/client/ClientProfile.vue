@@ -37,7 +37,7 @@
                         </div>
                         <div class="col mr-1">
                             Your allergies
-                            <div class="border border-gray col" v-if="patient" >
+                            <div class="border border-gray col" v-if="client" >
                                 <div v-for="allergy in allergies" v-bind:key="allergy.id" @click="selectedAllergy = allergy" style="cursor: pointer;" class="bg rounded p-1" v-bind:class="{'bg-success': selectedAllergy.id == allergy.id}">
                                     {{allergy.name}}
                                 </div>
@@ -54,11 +54,11 @@
             </div>
         </div>
     </div>
-    <div class="row" v-if="patient">
+    <div class="row" v-if="client">
         <div class="col-2 mt-5">
             <div class="border border-success ml-2">
                 <h5>Your penalties</h5>
-                <h1 v-bind:class="{'text-danger': patient.penalties >= 3}">{{patient.penalties}}</h1>
+                <h1 v-bind:class="{'text-danger': client.penalties >= 3}">{{client.penalties}}</h1>
                 <div class="text-warning">
                     Having 3 or more penalties restricts access to some features.<br>
                     <b class="text-light">Penalties reset every 1st of a month.</b>
@@ -71,9 +71,9 @@
         <div class="col-2 mt-5">
             <div class="border border-success mr-2">
                 <h5>Allergies</h5>
-                <div v-if="patient.allergies.length > 0">
+                <div v-if="client.allergies.length > 0">
                     <table class="table table-striped table-dark">
-                        <tr v-for="drug in patient.allergies" v-bind:key="drug.id">
+                        <tr v-for="drug in client.allergies" v-bind:key="drug.id">
                             <td>{{drug.name}}</td>
                         </tr>
                     </table>
@@ -94,7 +94,7 @@ import { api } from '../../api.js'
 export default {
     data: function () {
         return {
-            patient: null,
+            client: null,
             drugs: [],
             allergies: [],
             selectedAllergy: '',
@@ -105,13 +105,13 @@ export default {
         Profile
     },
     mounted: function () {
-        this.fetchPatient()
+        this.fetchClient()
     },
     methods: {
-        fetchPatient: function () {
-            axios.get(api.patients.root)
+        fetchClient: function () {
+            axios.get(api.clients.root)
             .then(response => {
-                this.patient = response.data
+                this.client = response.data
             })
             .catch()
         },
@@ -146,14 +146,14 @@ export default {
                 }
         },
         openAllergies: function () {
-            this.allergies = [...this.patient.allergies]
+            this.allergies = [...this.client.allergies]
             this.fetchDrugs()
         },
         updateAllergies: function () {
-            axios.put(api.patients.allergies, this.allergies)
+            axios.put(api.clients.allergies, this.allergies)
             .then(() => {
                 this.$toast.open("Allergies successfully updated.")
-                this.fetchPatient()
+                this.fetchClient()
             })
             .catch(error => {
                 this.$toast.error(error.response.data)
