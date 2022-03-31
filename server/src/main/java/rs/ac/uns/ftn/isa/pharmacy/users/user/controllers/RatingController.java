@@ -7,11 +7,11 @@ import rs.ac.uns.ftn.isa.pharmacy.auth.HttpRequestUtil;
 import rs.ac.uns.ftn.isa.pharmacy.auth.IdentityProvider;
 import rs.ac.uns.ftn.isa.pharmacy.auth.model.Role;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.dtos.RateableEntitiesDto;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.dtos.RatingDrugDto;
+import rs.ac.uns.ftn.isa.pharmacy.users.user.dtos.RatingProductDto;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.dtos.RatingEmployeeDto;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.dtos.RatingPharmacyDto;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.mappers.RateableEntitiesMapper;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.mappers.RatingDrugMapper;
+import rs.ac.uns.ftn.isa.pharmacy.users.user.mappers.RatingProductMapper;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.mappers.RatingEmployeeMapper;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.mappers.RatingPharmacyMapper;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.services.RatingService;
@@ -32,7 +32,7 @@ public class RatingController {
     public RateableEntitiesDto getClientPharmacistHistory(HttpServletRequest request) {
         IdentityProvider identityProvider = HttpRequestUtil.getIdentity(request);
         return RateableEntitiesMapper.objectsToDto(
-                ratingService.getClientDrugHistory(identityProvider.getRoleId()),
+                ratingService.getClientProductHistory(identityProvider.getRoleId()),
                 ratingService.getClientPharmacyHistory(identityProvider.getRoleId())
         );
     }
@@ -45,12 +45,12 @@ public class RatingController {
         ratingService.rateEmployee(RatingEmployeeMapper.dtoToObject(dto), identityProvider.getRoleId());
     }
 
-    @PostMapping("/drug")
+    @PostMapping("/product")
     @Secured(Role.PATIENT)
     @ResponseStatus(HttpStatus.OK)
-    public void rateDrug(HttpServletRequest request, @RequestBody RatingDrugDto dto) {
+    public void rateProduct(HttpServletRequest request, @RequestBody RatingProductDto dto) {
         IdentityProvider identityProvider = HttpRequestUtil.getIdentity(request);
-        ratingService.rateDrug(RatingDrugMapper.dtoToObject(dto), identityProvider.getRoleId());
+        ratingService.rateProduct(RatingProductMapper.dtoToObject(dto), identityProvider.getRoleId());
     }
 
     @PostMapping("/pharmacy")

@@ -4,6 +4,6 @@ import javax.persistence.PersistenceException;
 
 public class AllergyException extends PersistenceException {
     public AllergyException() {
-        super("User is allergic to that drug.");
+        super("User is allergic to that product.");
     }
 }

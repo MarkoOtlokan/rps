@@ -8,15 +8,15 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "drug_reservations")
-public class DrugReservation {
+@Table(name = "product_reservations")
+public class ProductReservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @ManyToOne
     private Client client;
     @ManyToOne
-    private StoredDrug storedDrug;
+    private StoredProduct storedProduct;
     private LocalDate pickUpBefore;
     private boolean isDispensed;
     private int quantity;
@@ -37,12 +37,12 @@ public class DrugReservation {
         this.client = client;
     }
 
-    public StoredDrug getStoredDrug() {
-        return storedDrug;
+    public StoredProduct getStoredProduct() {
+        return storedProduct;
     }
 
-    public void setStoredDrug(StoredDrug storedDrug) {
-        this.storedDrug = storedDrug;
+    public void setStoredProduct(StoredProduct storedProduct) {
+        this.storedProduct = storedProduct;
     }
 
     public LocalDate getPickUpBefore() {

@@ -9,7 +9,7 @@ public class PurchaseOrderMapper {
         return new PurchaseOrderOverviewDto(
                 purchaseOrder.getId(),
                 purchaseOrder.getOfferDeadline(),
-                purchaseOrder.getOrderedDrugs().stream().map(OrderedDrugMapper::objectToDto).collect(Collectors.toList())
+                purchaseOrder.getOrderedProducts().stream().map(OrderedProductMapper::objectToDto).collect(Collectors.toList())
         );
     }
 }

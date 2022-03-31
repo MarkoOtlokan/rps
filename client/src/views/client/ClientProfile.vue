@@ -12,10 +12,10 @@
                 <div class="modal-body text-left">
                     <div class="row">
                         <div class="col ml-1">
-                            Drugs
+                            Products
                             <div class="border border-gray col">
-                                <div v-for="drug in drugs" v-bind:key="drug.id" @click="selectedDrug = drug" style="cursor: pointer;" class="bg rounded p-1" v-bind:class="{'bg-success': selectedDrug.id == drug.id}">
-                                    {{drug.name}}
+                                <div v-for="product in products" v-bind:key="product.id" @click="selectedProduct = product" style="cursor: pointer;" class="bg rounded p-1" v-bind:class="{'bg-success': selectedProduct.id == product.id}">
+                                    {{product.name}}
                                 </div>
                             </div>
                             
@@ -73,8 +73,8 @@
                 <h5>Allergies</h5>
                 <div v-if="client.allergies.length > 0">
                     <table class="table table-striped table-dark">
-                        <tr v-for="drug in client.allergies" v-bind:key="drug.id">
-                            <td>{{drug.name}}</td>
+                        <tr v-for="product in client.allergies" v-bind:key="product.id">
+                            <td>{{product.name}}</td>
                         </tr>
                     </table>
                 </div>
@@ -95,10 +95,10 @@ export default {
     data: function () {
         return {
             client: null,
-            drugs: [],
+            products: [],
             allergies: [],
             selectedAllergy: '',
-            selectedDrug: ''
+            selectedProduct: ''
         }
     },
     components: {
@@ -115,24 +115,24 @@ export default {
             })
             .catch()
         },
-        fetchDrugs: function () {
+        fetchProducts: function () {
             this.clearSelection()
-            axios.get(api.drugs.root)
+            axios.get(api.products.root)
             .then(response => {
-                this.drugs = response.data
+                this.products = response.data
             })
         },
         clearSelection: function () {
             this.selectedAllergy = ''
-            this.selectedDrug = ''
+            this.selectedProduct = ''
         },
         addAllergy: function () {
-            if (this.selectedDrug)
-                if (!this.allergies.map(a => a.id).includes(this.selectedDrug.id))
+            if (this.selectedProduct)
+                if (!this.allergies.map(a => a.id).includes(this.selectedProduct.id))
                     this.allergies.push(
                         {
-                            id: this.selectedDrug.id,
-                            name: this.selectedDrug.name
+                            id: this.selectedProduct.id,
+                            name: this.selectedProduct.name
                         }
                     )
         },
@@ -147,7 +147,7 @@ export default {
         },
         openAllergies: function () {
             this.allergies = [...this.client.allergies]
-            this.fetchDrugs()
+            this.fetchProducts()
         },
         updateAllergies: function () {
             axios.put(api.clients.allergies, this.allergies)

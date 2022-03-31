@@ -18,7 +18,7 @@ public class Client {
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
 //    private List<Appointment> appointments;
 //    @ManyToMany
-//    private List<Drug> allergicTo;
+//    private List<Product> allergicTo;
 //    private int penalties;
 
 //    public Boolean canSchedule(Appointment appointment){
@@ -64,11 +64,11 @@ public class Client {
 //        this.penalties = penalties;
 //    }
 //
-//    public List<Drug> getAllergicTo() {
+//    public List<Product> getAllergicTo() {
 //        return allergicTo;
 //    }
 //
-//    public void setAllergicTo(List<Drug> allergicTo) {
+//    public void setAllergicTo(List<Product> allergicTo) {
 //        this.allergicTo = allergicTo;
 //    }
 //

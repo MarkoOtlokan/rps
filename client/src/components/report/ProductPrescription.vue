@@ -40,9 +40,9 @@ import { api } from '../../api.js'
 import axios from 'axios'
 export default {
     
-    name: 'DrugPrescripton',
+    name: 'ProductPrescripton',
     props: {
-        drug: Object
+        product: Object
     },
     data() {
         return {
@@ -64,31 +64,31 @@ export default {
                 return;
             }
 
-            this.$store.commit('addPrescribedDrug',
-                    {   drug: this.drug, 
+            this.$store.commit('addPrescribedProduct',
+                    {   product: this.product, 
                         duration: this.duration }
             )
-            this.$root.$emit('bv::hide::modal','drug-prescription-modal')
+            this.$root.$emit('bv::hide::modal','product-prescription-modal')
             this.$root.$emit('update::prescribed')
 
         },
         checkAvailability(){
-            axios.get(api.storedDrugs.isAvailable + '?pharmacyId=' + this.appointment.pharmacyId
-                        + '&drugId=' + this.drug.id)
+            axios.get(api.storedProducts.isAvailable + '?pharmacyId=' + this.appointment.pharmacyId
+                        + '&productId=' + this.product.id)
             .then(res=>{
                 this.checkIfClientIsAllergic()
             })
             .catch(err=>{
                 if(err.response.status === 417){
                     this.alternatives = err.response.data
-                    this.errText = this.drug.name + " isn't currently available at the pharmacy."
+                    this.errText = this.product.name + " isn't currently available at the pharmacy."
                     this.checkFinished=true
                 }
             })
         },
         checkIfClientIsAllergic(){
             axios.get(api.clients.isAllergic + '?clientId=' + this.appointment.clientId
-                        + '&drugId=' + this.drug.id)
+                        + '&productId=' + this.product.id)
             .then(res=>{
                 this.checkFinished=true
             })
@@ -96,7 +96,7 @@ export default {
                  if(err.response.status === 417){
                     this.alternatives = err.response.data
                     this.errText = this.appointment.clientFullName
-                     + " is allergic to " + this.drug.name
+                     + " is allergic to " + this.product.name
                      this.checkFinished = true
                 }
             })

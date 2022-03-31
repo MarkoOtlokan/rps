@@ -1,28 +1,28 @@
 package rs.ac.uns.ftn.isa.pharmacy.pharma.dtos;
 
 import rs.ac.uns.ftn.isa.pharmacy.finance.Price;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Pharmacy;
 
-public class StoredDrugDto {
-    private long storedDrugId;
+public class StoredProductDto {
+    private long storedProductId;
     private Price price;
-    private Drug drug;
+    private Product product;
     private Pharmacy pharmacy;
 
-    public StoredDrugDto(long storedDrugId, Price price, Drug drug, Pharmacy pharmacy) {
-        this.storedDrugId = storedDrugId;
+    public StoredProductDto(long storedProductId, Price price, Product product, Pharmacy pharmacy) {
+        this.storedProductId = storedProductId;
         this.price = price;
-        this.drug = drug;
+        this.product = product;
         this.pharmacy = pharmacy;
     }
 
-    public long getStoredDrugId() {
-        return storedDrugId;
+    public long getStoredProductId() {
+        return storedProductId;
     }
 
-    public void setStoredDrugId(long storedDrugId) {
-        this.storedDrugId = storedDrugId;
+    public void setStoredProductId(long storedProductId) {
+        this.storedProductId = storedProductId;
     }
 
     public Price getPrice() {
@@ -33,12 +33,12 @@ public class StoredDrugDto {
         this.price = price;
     }
 
-    public Drug getDrug() {
-        return drug;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Pharmacy getPharmacy() {

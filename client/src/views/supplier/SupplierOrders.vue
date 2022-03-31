@@ -5,7 +5,7 @@
     <table class="text-light bg-dark table" style="border: none; border-collapse: collapse">
       <thead style="border: none">
         <th>Deadline</th>
-        <th>Drug list</th>
+        <th>Product list</th>
         <th>Create offer</th>
       </thead>
       <tr v-for="order in orders" :key="order.id">
@@ -13,7 +13,7 @@
           <p> {{order.offerDeadline}}</p>
         </td>
         <td>
-          <b-table :items="order.orderedDrugs" borderless dark>
+          <b-table :items="order.orderedProducts" borderless dark>
           </b-table>
         </td>
         <td>
@@ -27,7 +27,7 @@
 
   <div>
     <b-modal title="Create offer" id="offer_modal" @ok="sendOffer">
-        <b-table :items="currentOrder.orderedDrugs">
+        <b-table :items="currentOrder.orderedProducts">
         </b-table>
         <div class="mt-3 bg-dark text-light p-3">
          <div class="row p-4">
@@ -54,7 +54,7 @@ export default {
     return {
       orders: [],
       currentOrder: {
-        orderedDrugs: []
+        orderedProducts: []
       },
       offer: {
         deliveryDeadlineString: '',

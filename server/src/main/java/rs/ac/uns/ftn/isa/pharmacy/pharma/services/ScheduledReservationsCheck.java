@@ -5,11 +5,11 @@ import rs.ac.uns.ftn.isa.pharmacy.users.user.services.ClientService;
 
 @Component
 public class ScheduledReservationsCheck {
-    private final DrugReservationService drugReservationService;
+    private final ProductReservationService productReservationService;
     private final ClientService clientService;
 
-    public ScheduledReservationsCheck(DrugReservationService drugReservationService, ClientService clientService) {
-        this.drugReservationService = drugReservationService;
+    public ScheduledReservationsCheck(ProductReservationService productReservationService, ClientService clientService) {
+        this.productReservationService = productReservationService;
         this.clientService = clientService;
     }
 

@@ -7,7 +7,7 @@
 
         <div class="collapse navbar-collapse" id="navbar-content">
             <ul class="navbar-nav mr-auto">
-                <router-link to="/client/drugs" class="nav-link">Poruči proizvod</router-link>
+                <router-link to="/client/products" class="nav-link">Poruči proizvod</router-link>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">

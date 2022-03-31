@@ -328,86 +328,86 @@ values (54, "2021-03-06 14:00:00", "2021-03-06 20:00:00", 2,3);
 
 
 
-insert into isa.drugs (id, additional_notes, drug_type, intake_type, manufacturer, name, requires_prescription)
+insert into isa.products (id, additional_notes, product_type, intake_type, manufacturer, name, requires_prescription)
 values (1, "Gel namenjen za masnu kožu", 4, 5, "MiksaMed", "Dermoidealia gel", false);
-insert into isa.drug_ingredients (drug_id,ingredients) values (1,"Glycerin");
-insert into isa.drug_ingredients (drug_id,ingredients) values (1,"D-panthenol");
-insert into isa.drug_ingredients (drug_id,ingredients) values (1,"Allantoin");
+insert into isa.product_ingredients (product_id,ingredients) values (1,"Glycerin");
+insert into isa.product_ingredients (product_id,ingredients) values (1,"D-panthenol");
+insert into isa.product_ingredients (product_id,ingredients) values (1,"Allantoin");
 
-insert into isa.drugs (id, additional_notes, drug_type, intake_type, manufacturer, name, requires_prescription)
+insert into isa.products (id, additional_notes, product_type, intake_type, manufacturer, name, requires_prescription)
 values (2, "Gel namenjen za masnu kožu", 4, 5, "ESI", "Acknes gel", false);
-insert into isa.drug_ingredients (drug_id,ingredients) values (2,"Glycerin");
-insert into isa.drug_ingredients (drug_id,ingredients) values (2,"D-panthenol");
-insert into isa.drug_ingredients (drug_id,ingredients) values (2,"Allantoin");
+insert into isa.product_ingredients (product_id,ingredients) values (2,"Glycerin");
+insert into isa.product_ingredients (product_id,ingredients) values (2,"D-panthenol");
+insert into isa.product_ingredients (product_id,ingredients) values (2,"Allantoin");
 
-insert into isa.drugs (id, additional_notes, drug_type, intake_type, manufacturer, name, requires_prescription)
+insert into isa.products (id, additional_notes, product_type, intake_type, manufacturer, name, requires_prescription)
 values (3, "Gel namenjen za masnu kožu", 4, 5, "Avene", "Cleanance Comedomed", false);
-insert into isa.drug_ingredients (drug_id,ingredients) values (3,"Glycerin");
-insert into isa.drug_ingredients (drug_id,ingredients) values (3,"D-panthenol");
-insert into isa.drug_ingredients (drug_id,ingredients) values (3,"Allantoin");
+insert into isa.product_ingredients (product_id,ingredients) values (3,"Glycerin");
+insert into isa.product_ingredients (product_id,ingredients) values (3,"D-panthenol");
+insert into isa.product_ingredients (product_id,ingredients) values (3,"Allantoin");
 
-insert into isa.drugs (id, additional_notes, drug_type, intake_type, manufacturer, name, requires_prescription)
+insert into isa.products (id, additional_notes, product_type, intake_type, manufacturer, name, requires_prescription)
 values (4, "Gel za upaljenu i iritiranu kožu", 4, 5, "Hiper", "Hama gel", false);
-insert into isa.drug_ingredients (drug_id,ingredients) values (4,"Hamamelis destilat");
-insert into isa.drug_ingredients (drug_id,ingredients) values (4,"D-panthenol");
-insert into isa.drug_ingredients (drug_id,ingredients) values (4,"Extr. kamilice");
+insert into isa.product_ingredients (product_id,ingredients) values (4,"Hamamelis destilat");
+insert into isa.product_ingredients (product_id,ingredients) values (4,"D-panthenol");
+insert into isa.product_ingredients (product_id,ingredients) values (4,"Extr. kamilice");
 
-insert into isa.drugs (id, additional_notes, drug_type, intake_type, manufacturer, name, requires_prescription)
+insert into isa.products (id, additional_notes, product_type, intake_type, manufacturer, name, requires_prescription)
 values (5, "Krema za upaljenu i iritiranu kožu", 4, 4, "A-Derma", "Epitheliale AH Ultra", false);
-insert into isa.drug_ingredients (drug_id,ingredients) values (5,"Glycerin");
-insert into isa.drug_ingredients (drug_id,ingredients) values (5,"Stearic acid");
-insert into isa.drug_ingredients (drug_id,ingredients) values (5,"Batyl alcohol");
+insert into isa.product_ingredients (product_id,ingredients) values (5,"Glycerin");
+insert into isa.product_ingredients (product_id,ingredients) values (5,"Stearic acid");
+insert into isa.product_ingredients (product_id,ingredients) values (5,"Batyl alcohol");
 
-insert into isa.drugs (id, additional_notes, drug_type, intake_type, manufacturer, name, requires_prescription)
+insert into isa.products (id, additional_notes, product_type, intake_type, manufacturer, name, requires_prescription)
 values (6, "Antidepresiv", 0, 0, "Hemofarm", "Flunisan", true);
-insert into isa.drug_ingredients (drug_id,ingredients) values (6,"Fluoksetin");
+insert into isa.product_ingredients (product_id,ingredients) values (6,"Fluoksetin");
 
-insert into isa.drugs (id, additional_notes, drug_type, intake_type, manufacturer, name, requires_prescription)
+insert into isa.products (id, additional_notes, product_type, intake_type, manufacturer, name, requires_prescription)
 values (7, "Antidepresiv", 0, 0, "Bosnalijek", "Flusetin", true);
-insert into isa.drug_ingredients (drug_id,ingredients) values (7,"Fluoksetin");
+insert into isa.product_ingredients (product_id,ingredients) values (7,"Fluoksetin");
 
-insert into isa.drugs_alternatives (drug_id,alternatives_id) values (1,2);
-insert into isa.drugs_alternatives (drug_id,alternatives_id) values (1,3);
-insert into isa.drugs_alternatives (drug_id,alternatives_id) values (2,1);
-insert into isa.drugs_alternatives (drug_id,alternatives_id) values (2,3);
-insert into isa.drugs_alternatives (drug_id,alternatives_id) values (3,1);
-insert into isa.drugs_alternatives (drug_id,alternatives_id) values (3,2);
-insert into isa.drugs_alternatives (drug_id,alternatives_id) values (6,7);
-insert into isa.drugs_alternatives (drug_id,alternatives_id) values (7,6);
+insert into isa.products_alternatives (product_id,alternatives_id) values (1,2);
+insert into isa.products_alternatives (product_id,alternatives_id) values (1,3);
+insert into isa.products_alternatives (product_id,alternatives_id) values (2,1);
+insert into isa.products_alternatives (product_id,alternatives_id) values (2,3);
+insert into isa.products_alternatives (product_id,alternatives_id) values (3,1);
+insert into isa.products_alternatives (product_id,alternatives_id) values (3,2);
+insert into isa.products_alternatives (product_id,alternatives_id) values (6,7);
+insert into isa.products_alternatives (product_id,alternatives_id) values (7,6);
 
 insert into isa.clients_allergic_to (client_id,allergic_to_id) values (1,1);
 insert into isa.clients_allergic_to (client_id,allergic_to_id) values (2,2);
 insert into isa.clients_allergic_to (client_id,allergic_to_id) values (3,3);
 
 
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id, version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id, version)
 values (1, 200.5, "2022-03-03 00:00:00", 1, 1, 1, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id, version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id, version)
 values (2, 300.0, "2022-03-03 00:00:00", 20, 2, 1, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id, version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id, version)
 values (3, 100.0, "2022-03-03 00:00:00", 20, 3, 1, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id, version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id, version)
 values (4, 150.0, "2022-03-03 00:00:00", 25, 4, 1, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id, version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id, version)
 values (5, 220.0, "2022-03-03 00:00:00", 15, 5, 1, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id, version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id, version)
 values (6, 150.0, "2022-03-03 00:00:00", 0, 6, 1, 0);
-#insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id)
+#insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id)
 #values (7, 150.0, "2022-03-03 00:00:00", 25, 7, 1);
 
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id, version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id, version)
 values (8, 200.5, "2022-03-03 00:00:00", 5, 1, 2, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id, version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id, version)
 values (9, 300.0, "2022-03-03 00:00:00", 10, 2, 2, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id,version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id,version)
 values (10, 100.0, "2022-03-03 00:00:00", 15, 3, 2, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id, version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id, version)
 values (11, 150.0, "2022-03-03 00:00:00", 10, 4, 2, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id,version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id,version)
 values (12, 220.0, "2022-03-03 00:00:00", 5, 5, 2, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id,version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id,version)
 values (13, 150.0, "2022-03-03 00:00:00", 10, 6, 2, 0);
-insert into isa.stored_drugs (id, amount, valid_until, quantity, drug_id, pharmacy_id,version)
+insert into isa.stored_products (id, amount, valid_until, quantity, product_id, pharmacy_id,version)
 values (14, 150.0, "2022-03-03 00:00:00", 25, 7, 2, 0);
 
 insert into isa.appointment_reports (id, appointment_info, appointment_id)
@@ -417,11 +417,11 @@ values (2, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac 
 insert into isa.appointment_reports (id, appointment_info, appointment_id)
 values (3, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac sem erat. Sed dui neque, aliquam rhoncus fermentum vitae, facilisis quis metus.", 10);
 
-insert into isa.drug_reservations (id, is_dispensed, pick_up_before, quantity, client_id, stored_drug_id)
+insert into isa.product_reservations (id, is_dispensed, pick_up_before, quantity, client_id, stored_product_id)
 values (1, true, "2021-1-5", 2, 1, 1);
-insert into isa.drug_reservations (id, is_dispensed, pick_up_before, quantity, client_id, stored_drug_id)
+insert into isa.product_reservations (id, is_dispensed, pick_up_before, quantity, client_id, stored_product_id)
 values (2, true, "2021-1-6", 3, 2, 1);
-insert into isa.drug_reservations (id, is_dispensed, pick_up_before, quantity, client_id, stored_drug_id)
+insert into isa.product_reservations (id, is_dispensed, pick_up_before, quantity, client_id, stored_product_id)
 values (3, true, "2021-1-6", 3, 2, 2);
 
 -- asd
@@ -444,41 +444,41 @@ insert into isa.purchase_order(id, offer_deadline, status) values(3, "2021-02-15
 insert into isa.purchase_order(id, offer_deadline, status) values(4, "2020-12-01", 0);
 insert into isa.purchase_order(id, offer_deadline, status) values(5, "2021-3-15", 0);
 
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(11, 100, 1, 1);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(2, 1200, 4, 1);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(3, 2500, 5, 1);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(4, 3300, 3, 1);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(5, 20000, 2, 1);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(6, 2300, 7, 2);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(7, 10230, 6, 2);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(8, 1010, 5, 3);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(9, 300, 2, 3);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(10, 4400, 1, 4);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(12, 5000, 4, 5);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(13, 100, 2, 5);
-insert into isa.ordered_drug(id, amount, drug_id, order_id) values(14, 25000, 6, 5);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(11, 100, 1, 1);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(2, 1200, 4, 1);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(3, 2500, 5, 1);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(4, 3300, 3, 1);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(5, 20000, 2, 1);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(6, 2300, 7, 2);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(7, 10230, 6, 2);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(8, 1010, 5, 3);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(9, 300, 2, 3);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(10, 4400, 1, 4);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(12, 5000, 4, 5);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(13, 100, 2, 5);
+insert into isa.ordered_product(id, amount, product_id, order_id) values(14, 25000, 6, 5);
 
 
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(1, 11);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(1, 2);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(1, 3);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(1,4);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(1,5);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(2, 6);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(2, 7);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(3, 8);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(3, 9);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(4, 10);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(5, 12);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(5, 13);
-insert into isa.purchase_order_ordered_drugs(purchase_order_id, ordered_drugs_id) values(5, 14);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(1, 11);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(1, 2);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(1, 3);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(1,4);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(1,5);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(2, 6);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(2, 7);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(3, 8);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(3, 9);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(4, 10);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(5, 12);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(5, 13);
+insert into isa.purchase_order_ordered_products(purchase_order_id, ordered_products_id) values(5, 14);
 
-insert into isa.supplier_drug_stock(id, amount, drug_id, supplier_person_id) values(1, 10000, 1, 81);
-insert into isa.supplier_drug_stock(id, amount, drug_id, supplier_person_id) values(2, 2000, 2, 81);
-insert into isa.supplier_drug_stock(id, amount, drug_id, supplier_person_id) values(3, 5000, 3, 81);
-insert into isa.supplier_drug_stock(id, amount, drug_id, supplier_person_id) values(4, 10000, 4, 81);
-insert into isa.supplier_drug_stock(id, amount, drug_id, supplier_person_id) values(5, 10999, 6, 81);
-insert into isa.supplier_drug_stock(id, amount, drug_id, supplier_person_id) values(6, 2000, 7, 81);
+insert into isa.supplier_product_stock(id, amount, product_id, supplier_person_id) values(1, 10000, 1, 81);
+insert into isa.supplier_product_stock(id, amount, product_id, supplier_person_id) values(2, 2000, 2, 81);
+insert into isa.supplier_product_stock(id, amount, product_id, supplier_person_id) values(3, 5000, 3, 81);
+insert into isa.supplier_product_stock(id, amount, product_id, supplier_person_id) values(4, 10000, 4, 81);
+insert into isa.supplier_product_stock(id, amount, product_id, supplier_person_id) values(5, 10999, 6, 81);
+insert into isa.supplier_product_stock(id, amount, product_id, supplier_person_id) values(6, 2000, 7, 81);
 
 select * from isa.appointments;
 insert into isa.persons (id, pid, date_of_birth, first_name, gender, last_name, phone_number, address_id)

@@ -1,26 +1,26 @@
 package rs.ac.uns.ftn.isa.pharmacy.users.user.dtos;
 
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AllergiesDto {
-    private List<Drug> allergicTo;
+    private List<Product> allergicTo;
 
-    public AllergiesDto(List<Drug> allergicTo) {
+    public AllergiesDto(List<Product> allergicTo) {
         this.allergicTo = allergicTo;
     }
 
     public AllergiesDto() {
-        this.allergicTo = new ArrayList<Drug>();
+        this.allergicTo = new ArrayList<Product>();
     }
 
-    public List<Drug> getAllergicTo() {
+    public List<Product> getAllergicTo() {
         return allergicTo;
     }
 
-    public void setAllergicTo(List<Drug> allergicTo) {
+    public void setAllergicTo(List<Product> allergicTo) {
         this.allergicTo = allergicTo;
     }
 }

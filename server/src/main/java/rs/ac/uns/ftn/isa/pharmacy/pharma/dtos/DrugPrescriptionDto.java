@@ -1,15 +1,15 @@
 package rs.ac.uns.ftn.isa.pharmacy.pharma.dtos;
 
-public class DrugPrescriptionDto {
-    private long drugId;
+public class ProductPrescriptionDto {
+    private long productId;
     private int duration;
 
-    public long getDrugId() {
-        return drugId;
+    public long getProductId() {
+        return productId;
     }
 
-    public void setDrugId(long drugId) {
-        this.drugId = drugId;
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
     public int getDuration() {

@@ -1,15 +1,15 @@
 package rs.ac.uns.ftn.isa.pharmacy.users.user.services;
 
 import org.springframework.stereotype.Service;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Pharmacy;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.services.DrugReservationService;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.services.ProductReservationService;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Client;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.DrugRating;
+import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.ProductRating;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.EmployeeRating;
 
 import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.PharmacyRating;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.repository.DrugRatingRepository;
+import rs.ac.uns.ftn.isa.pharmacy.users.user.repository.ProductRatingRepository;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.repository.EmployeeRatingRepository;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.repository.PharmacyRatingRepository;
 
@@ -21,33 +21,33 @@ import java.util.Map;
 @Service
 public class RatingService {
     private final EmployeeRatingRepository employeeRatingRepository;
-    private final DrugRatingRepository drugRatingRepository;
+    private final ProductRatingRepository productRatingRepository;
     private final PharmacyRatingRepository pharmacyRatingRepository;
-    private final DrugReservationService drugReservationService;
+    private final ProductReservationService productReservationService;
 
-    public RatingService(DrugReservationService drugReservationService,
+    public RatingService(ProductReservationService productReservationService,
                          EmployeeRatingRepository employeeRatingRepository,
-                         DrugRatingRepository drugRatingRepository,
+                         ProductRatingRepository productRatingRepository,
                          PharmacyRatingRepository pharmacyRatingRepository) {
-        this.drugReservationService = drugReservationService;
+        this.productReservationService = productReservationService;
         this.employeeRatingRepository = employeeRatingRepository;
-        this.drugRatingRepository = drugRatingRepository;
+        this.productRatingRepository = productRatingRepository;
         this.pharmacyRatingRepository = pharmacyRatingRepository;
     }
 
-    public List<Drug> getClientDrugHistory(long clientId) {
-        Map<Long, Drug> drugMap = new HashMap<>();
-        for (var drugReservation: drugReservationService.findClientReservationHistory(clientId)) {
-            drugMap.put(drugReservation.getStoredDrug().getDrug().getId(), drugReservation.getStoredDrug().getDrug());
+    public List<Product> getClientProductHistory(long clientId) {
+        Map<Long, Product> productMap = new HashMap<>();
+        for (var productReservation: productReservationService.findClientReservationHistory(clientId)) {
+            productMap.put(productReservation.getStoredProduct().getProduct().getId(), productReservation.getStoredProduct().getProduct());
         }
-        return new ArrayList(drugMap.values());
+        return new ArrayList(productMap.values());
     }
 
     public List<Pharmacy> getClientPharmacyHistory(long clientId) {
         Map<Long, Pharmacy> pharmacyMap = new HashMap<>();
-        for (var drugReservations: drugReservationService.findClientReservationHistory(clientId)) {
-            pharmacyMap.put(drugReservations.getStoredDrug().getPharmacy().getId(),
-                    drugReservations.getStoredDrug().getPharmacy());
+        for (var productReservations: productReservationService.findClientReservationHistory(clientId)) {
+            pharmacyMap.put(productReservations.getStoredProduct().getPharmacy().getId(),
+                    productReservations.getStoredProduct().getPharmacy());
         }
         return new ArrayList(pharmacyMap.values());
     }
@@ -64,15 +64,15 @@ public class RatingService {
         employeeRatingRepository.save(rating);
     }
 
-    public void rateDrug(DrugRating rating, long clientId) {
+    public void rateProduct(ProductRating rating, long clientId) {
         rating.setClient(new Client());
         rating.getClient().setId(clientId);
         var existingRating
-                = drugRatingRepository.findByDrugIdAndClientId(rating.getDrug().getId(), clientId);
+                = productRatingRepository.findByProductIdAndClientId(rating.getProduct().getId(), clientId);
         if (existingRating.isPresent()) {
             rating.setId(existingRating.get().getId());
         }
-        drugRatingRepository.save(rating);
+        productRatingRepository.save(rating);
     }
 
     public void ratePharmacy(PharmacyRating rating, long clientId) {

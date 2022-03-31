@@ -24,7 +24,7 @@
           <th>Price</th>
           <th>Delivery deadline</th>
           <th>Status</th>
-          <th>Ordered drugs</th>
+          <th>Ordered products</th>
           <th>Edit</th>
         </thead>
         <tr v-for="offer in displayedOffers" :key="offer.id">
@@ -33,7 +33,7 @@
           <td>{{new Date(offer.deliveryDeadline).toDateString()}}</td>
           <td>{{offer.status}}</td>
           <td>
-                <b-table :items="offer.purchaseOrder.orderedDrugs" borderless dark></b-table>
+                <b-table :items="offer.purchaseOrder.orderedProducts" borderless dark></b-table>
           </td>
           <td>
                 <b-button class="btn btn-success w-100 pt-2 pb-2" style="margin-top: 0;"
@@ -44,7 +44,7 @@
     </div>
     <div>
       <b-modal id="update_modal" title="Update your offer" @ok="update">
-        <b-table :items="currentOffer.purchaseOrder.orderedDrugs">
+        <b-table :items="currentOffer.purchaseOrder.orderedProducts">
         </b-table>
         <div class="mt-3 bg-dark text-light p-3">
           <div class="row p-4">
@@ -73,7 +73,7 @@ export default {
       displayedOffers: [],
       currentOffer: {
         purchaseOrder: {
-          orderedDrugs: []
+          orderedProducts: []
         },
         price: {
           amount: ''

@@ -37,7 +37,7 @@ public class PersistenceExceptionHandler {
     @ResponseBody
     @ExceptionHandler(QuantityException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String storedDrugQuantityHandler(QuantityException e){
+    String storedProductQuantityHandler(QuantityException e){
         return e.getMessage();
     }
 

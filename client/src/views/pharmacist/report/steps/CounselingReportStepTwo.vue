@@ -16,7 +16,7 @@
         </b-row>
         <b-row align-h="center" class="mt-4" >
             <b-col sm="4">
-                <b-button :disabled="text==''" variant="success" @click="proceed()"> Proceed to a drug prescription step </b-button>
+                <b-button :disabled="text==''" variant="success" @click="proceed()"> Proceed to a product prescription step </b-button>
             </b-col>
         </b-row>
 

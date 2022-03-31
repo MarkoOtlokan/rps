@@ -1,11 +1,11 @@
 package rs.ac.uns.ftn.isa.pharmacy.pharma.mappers;
 
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.dtos.DrugSimpleDto;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.dtos.ProductSimpleDto;
 
-public class DrugSimpleMapper {
+public class ProductSimpleMapper {
 
-    public static DrugSimpleDto objectToDto(Drug drug) {
-        return new DrugSimpleDto(drug.getId(), drug.getName());
+    public static ProductSimpleDto objectToDto(Product product) {
+        return new ProductSimpleDto(product.getId(), product.getName());
     }
 }

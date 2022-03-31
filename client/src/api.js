@@ -5,12 +5,12 @@ if (process.env.NODE_ENV == 'production')
 //REST endpoints
 let auth = "/api/auth"
 let appointments = '/api/appointments'
-let drugs = '/api/drugs'
+let products = '/api/products'
 let employees = '/api/employees'
 let scheduling = '/api/schedule'
 let clients = '/api/clients'
 let person = '/api/person'
-let storedDrugs = '/api/stored-drugs'
+let storedProducts = '/api/stored-products'
 let timeOff = '/api/time-off'
 let pharmacies = '/api/pharmacies'
 let rating = '/api/rating'
@@ -52,17 +52,17 @@ export const api = {
         }
         
     },
-    drugs: {
-        root: host + drugs,
-        search: host + drugs + '/search',
-        clientSearch: host + drugs + '/client-search',
-        reservations: host + drugs + '/reservations/',
-        dispense: host + drugs + '/reservations/dispense/',
-        simple: host + drugs + '/simple'
+    products: {
+        root: host + products,
+        search: host + products + '/search',
+        clientSearch: host + products + '/client-search',
+        reservations: host + products + '/reservations/',
+        dispense: host + products + '/reservations/dispense/',
+        simple: host + products + '/simple'
     },
-    storedDrugs: {
-        root: host + storedDrugs,
-        isAvailable : host + storedDrugs + '/is-available'
+    storedProducts: {
+        root: host + storedProducts,
+        isAvailable : host + storedProducts + '/is-available'
     },
     employees: {
         registerDermatologist : host + employees + "/register-dermatologist",
@@ -99,7 +99,7 @@ export const api = {
     rating: {
         root: host + rating,
         employee: host + rating + '/employee',
-        drug: host + rating + '/drug',
+        product: host + rating + '/product',
         pharmacy: host + rating + '/pharmacy'
     },
     locale: {

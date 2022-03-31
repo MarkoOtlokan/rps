@@ -1,11 +1,11 @@
 package rs.ac.uns.ftn.isa.pharmacy.pharma.dtos;
 
-public class DrugSimpleDto {
+public class ProductSimpleDto {
 
     private long id;
     private String name;
 
-    public DrugSimpleDto(long id, String name) {
+    public ProductSimpleDto(long id, String name) {
         this.id = id;
         this.name = name;
     }

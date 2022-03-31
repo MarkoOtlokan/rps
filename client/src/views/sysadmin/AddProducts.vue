@@ -4,13 +4,13 @@
 
       <div class="col-6 text-right">
           <div>
-            <label class="mr-3">Drug name</label>
-            <input type="text" v-model="drugDto.drug.name">
+            <label class="mr-3">Product name</label>
+            <input type="text" v-model="productDto.product.name">
           </div>
 
           <div class="mt-4">
             <label class="mr-3">Intake type</label>
-            <select v-model="drugDto.drug.intakeType">
+            <select v-model="productDto.product.intakeType">
               <option value="CAPSULE">
                 Capsule
               </option>
@@ -40,12 +40,12 @@
 
           <div class="mt-4">
             <label class="mr-3">Manufacturer></label>
-            <input type="text" v-model="drugDto.drug.manufacturer">
+            <input type="text" v-model="productDto.product.manufacturer">
           </div>
 
           <div class="mt-4">
               <label class="mr-3">Requires prescription?</label>
-              <select v-model="drugDto.drug.requiresPrescription">
+              <select v-model="productDto.product.requiresPrescription">
                 <option value="true">
                   Yes
                 </option>
@@ -58,14 +58,14 @@
           <div class="mt-3">
             <label>Additional notes</label>
             <div></div>
-            <textarea type="text" v-model="drugDto.drug.additionalNotes" placeholder="Notes..." rows="3"> </textarea>
+            <textarea type="text" v-model="productDto.product.additionalNotes" placeholder="Notes..." rows="3"> </textarea>
           </div>
       </div>
 
       <div class="col-6 text-left">
           <div>
-            <label class="mr-3">Drug type</label>
-            <select v-model="drugDto.drug.drugType">
+            <label class="mr-3">Product type</label>
+            <select v-model="productDto.product.productType">
               <option value="NERVE">
                 Nerve
               </option>
@@ -91,8 +91,8 @@
           </div>
 
           <div class="mt-3">
-            <p>Pick alternative drugs for this drug:</p>
-            <select multiple v-model="drugDto.alternativeDrugIds" style="height: 250px; width: 100%">
+            <p>Pick alternative products for this product:</p>
+            <select multiple v-model="productDto.alternativeProductIds" style="height: 250px; width: 100%">
               <option v-for="alt in alts" :key="alt.id" :value=alt.id style="height: 25px;">
                 {{alt.name}}
               </option>
@@ -111,20 +111,20 @@ import axios from "axios";
 import {api} from "@/api";
 
 export default {
-    name: "AddDrugs",
+    name: "AddProducts",
     data() {
         return {
-            drugDto: {
-                drug: {
+            productDto: {
+                product: {
                     name: '',
-                    drugType: '',
+                    productType: '',
                     intakeType: '',
                     ingredients: [],
                     manufacturer: '',
                     requiresPrescription: false,
                     additionalNotes: ''
                 },
-                alternativeDrugIds: []
+                alternativeProductIds: []
             },
             ingredientsSpaced: '',
             alts: []
@@ -133,22 +133,22 @@ export default {
     methods: {
         create() {
             this.preprocess();
-            axios.post(api.drugs.root, this.drugDto)
-                .then(() => this.$toast.success(this.drugDto.drug.name + " successfully created"))
+            axios.post(api.products.root, this.productDto)
+                .then(() => this.$toast.success(this.productDto.product.name + " successfully created"))
                 .catch(error => this.$toast.error(error.response.data));
         },
         preprocess() {
             let ingredients = this.ingredientsSpaced.split(" ");
-            ingredients.forEach(ingredient => this.drugDto.drug.ingredients.push(ingredient));
+            ingredients.forEach(ingredient => this.productDto.product.ingredients.push(ingredient));
         },
-        getExistingDrugs() {
-            axios.get(api.drugs.simple)
+        getExistingProducts() {
+            axios.get(api.products.simple)
                 .then(response => this.alts = response.data)
                 .catch(error => this.$toast.error(error.response.data));
         }
     },
     mounted() {
-        this.getExistingDrugs();
+        this.getExistingProducts();
     }
 }
 </script>

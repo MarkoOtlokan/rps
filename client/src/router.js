@@ -21,10 +21,10 @@ import CounselingReportStepTwo from './views/pharmacist/report/steps/CounselingR
 import CounselingReportStepThree from './views/pharmacist/report/steps/CounselingReportStepThree.vue'
 import CounselingReportStepFour from './views/pharmacist/report/steps/CounselingReportStepFour.vue'
 import TimeOffRequest from './views/timeoff/TimeOffRequest.vue'
-import DrugDispensing from './views/pharmacist/drug-dispensing/DrugDispensing.vue'
+import ProductDispensing from './views/pharmacist/product-dispensing/ProductDispensing.vue'
 import WorkingCalendar from './views/employee/calendar/WorkingCalendar.vue'
 import Profile from './views/person/Profile.vue'
-import Drugs from './views/client/Drugs.vue'
+import Products from './views/client/Products.vue'
 import Appointments from './views/client/Appointments.vue'
 import ScheduleCounseling from './views/client/ScheduleCounseling.vue'
 import Pharmacies from './views/client/Pharmacies.vue'
@@ -34,7 +34,7 @@ import Feedback from './views/client/Feedback.vue'
 import Registration from './views/unauthorized/Registration'
 import ExaminationHistory from './views/client/ExaminationHistory.vue'
 import CounselingHistory from './views/client/CounselingHistory.vue'
-import DrugSearch from "@/views/DrugSearch";
+import ProductSearch from "@/views/ProductSearch";
 import ComplaintResponse from "@/views/sysadmin/ComplaintResponse";
 import SysAdminHome from "@/views/sysadmin/SysAdminHome";
 import SupplierHome from "@/views/supplier/SupplierHome";
@@ -44,7 +44,7 @@ import SupplierProfile from "@/views/supplier/SupplierProfile";
 import RegisterSupplier from "@/views/sysadmin/RegisterSupplier";
 import RegisterPharmacy from "@/views/sysadmin/RegisterPharmacy";
 import RegisterPhAdmin from "@/views/sysadmin/RegisterPhAdmin";
-import AddDrugs from "@/views/sysadmin/AddDrugs";
+import AddProducts from "@/views/sysadmin/AddProducts";
 import RegisterSysAdmin from "@/views/sysadmin/RegisterSysAdmin";
 import RegisterDermatologist from "@/views/sysadmin/RegisterDermatologist";
 
@@ -68,9 +68,9 @@ const router = new VueRouter({
                     component: Pharmacies
                 },
                 {
-                    path: 'drugs',
+                    path: 'products',
                     meta: { noSupply: true},
-                    component: DrugSearch
+                    component: ProductSearch
                 },
                 {
                     path: 'register',
@@ -140,7 +140,7 @@ const router = new VueRouter({
                             meta: { requiresDermaAuth: true}
                         },
                         {
-                            path: 'drug-prescription',
+                            path: 'product-prescription',
                             name: 'exam-report-step-three',
                             component: ExamReportStepThree,
                             meta: { requiresDermaAuth: true}
@@ -184,9 +184,9 @@ const router = new VueRouter({
                     component: RegisterPhAdmin
                 },
                 {
-                    path: 'drugs',
-                    name: 'drugs',
-                    component: AddDrugs
+                    path: 'products',
+                    name: 'products',
+                    component: AddProducts
                 },
                 {
                     path: 'register-sys-admin',
@@ -255,9 +255,9 @@ const router = new VueRouter({
                     meta: { requiresPharmaAuth: true }
                 },
                 {
-                    path: 'drug-dispensing',
-                    name: 'drug-dispensing',
-                    component: DrugDispensing,
+                    path: 'product-dispensing',
+                    name: 'product-dispensing',
+                    component: ProductDispensing,
                     meta: { requiresPharmaAuth: true }
                 }
                 ,
@@ -286,7 +286,7 @@ const router = new VueRouter({
                             meta: { requiresPharmaAuth: true }
                         },
                         {
-                            path: 'drug-prescription',
+                            path: 'product-prescription',
                             name: 'counseling-report-step-three',
                             component: CounselingReportStepThree,
                             meta: { requiresPharmaAuth: true }
@@ -320,8 +320,8 @@ const router = new VueRouter({
                     component: Appointments
                 },
                 {
-                    path: 'drugs',
-                    component: Drugs
+                    path: 'products',
+                    component: Products
                 },
                 {
                     path: 'schedule/examination/:id',
@@ -399,7 +399,7 @@ router.beforeEach((to, from, next) => {
             next({ name: 'insufficient-permissions' })
         }
         if (getRole() === "ROLE_PATIENT") {
-            next( { path: "client/drugs"} )
+            next( { path: "client/products"} )
         }
         else next();
     }

@@ -1,31 +1,31 @@
 <template>
     <b-col>
         <b-row>
-            <h4><b-badge variant="success">Drug prescription</b-badge></h4>
+            <h4><b-badge variant="success">Product prescription</b-badge></h4>
         </b-row>
-        <b-col class="mt-2" v-if="prescribedDrugs.length!=0" md="2">
+        <b-col class="mt-2" v-if="prescribedProducts.length!=0" md="2">
             <b-row>
-                <h5><b-badge variant="success">Prescribed drugs:</b-badge></h5>
+                <h5><b-badge variant="success">Prescribed products:</b-badge></h5>
             </b-row>
-            <b-row  class="mt-2" v-for="drugPrescription in prescribedDrugs" :key="drugPrescription.drug.id">
-                <h5><b-badge variant="success">{{drugPrescription.drug.name}} 
-                    ({{drugPrescription.duration}}
-                    {{drugPrescription.duration==1 ? 'day' : 'days'}}) </b-badge>
+            <b-row  class="mt-2" v-for="productPrescription in prescribedProducts" :key="productPrescription.product.id">
+                <h5><b-badge variant="success">{{productPrescription.product.name}} 
+                    ({{productPrescription.duration}}
+                    {{productPrescription.duration==1 ? 'day' : 'days'}}) </b-badge>
                 </h5>
             </b-row>
             <b-row>
-                <b-button size="sm" class="mt-2" @click="clearDrugs()">
-                    Clear prescribed drugs
+                <b-button size="sm" class="mt-2" @click="clearProducts()">
+                    Clear prescribed products
                 </b-button>
             </b-row>
         </b-col>
 
          <b-col lg="4" class="my-3 mt-4">
-            <b-form-group label="Drug:" label-for="filter-input" label-cols-sm="2" label-align-sm="right"
+            <b-form-group label="Product:" label-for="filter-input" label-cols-sm="2" label-align-sm="right"
                 label-size="sm" class="mb-0">
                 <b-input-group size="sm">
                     <b-form-input id="filter-input"
-                    v-model="filter" type="search" placeholder="Drug name or manufacturer..."
+                    v-model="filter" type="search" placeholder="Product name or manufacturer..."
                     >
                     </b-form-input>
 
@@ -41,31 +41,31 @@
             striped hover
             sticky-header
             :dark="true"
-            :items="drugs"
+            :items="products"
             :fields="fields"
             show-empty
             :filter="filter"
-            empty-filtered-text="There are no drugs matching your query."
+            empty-filtered-text="There are no products matching your query."
         >
-            <template #cell(drugSpec)="row">
-                <b-button size="sm" class="mr-1" @click="showDrugSpec(row.item,$event.target)">
-                    Drug specification
+            <template #cell(productSpec)="row">
+                <b-button size="sm" class="mr-1" @click="showProductSpec(row.item,$event.target)">
+                    Product specification
                 </b-button>
             </template>
 
             <template #cell(prescribe)="row">
-                <b-button size="sm" @click="showDrugPrescription(row.item,$event.target)">
+                <b-button size="sm" @click="showProductPrescription(row.item,$event.target)">
                     Prescribe
                 </b-button>
             </template>
 
         </b-table>
 
-        <b-modal size="lg" :title="drugSpecModal.title" :id="drugSpecModal.id" ok-only>
-            <drug-specification :drug="drugSpecModal.drug"></drug-specification>
+        <b-modal size="lg" :title="productSpecModal.title" :id="productSpecModal.id" ok-only>
+            <product-specification :product="productSpecModal.product"></product-specification>
         </b-modal>
-        <b-modal size="lg" :title="drugPrescriptionModal.title" :id="drugPrescriptionModal.id" ok-only>
-            <drug-prescription :drug="drugPrescriptionModal.drug"></drug-prescription>
+        <b-modal size="lg" :title="productPrescriptionModal.title" :id="productPrescriptionModal.id" ok-only>
+            <product-prescription :product="productPrescriptionModal.product"></product-prescription>
         </b-modal>
 
         <b-row align-h="center" class="mt-4" >
@@ -83,32 +83,32 @@
 <script>
 import axios from 'axios'
 import { api } from '../../../../api.js'
-import DrugSpecification from '../../../../components/report/DrugSpecification.vue'
-import DrugPrescription from '../../../../components/report/DrugPrescription.vue'
+import ProductSpecification from '../../../../components/report/ProductSpecification.vue'
+import ProductPrescription from '../../../../components/report/ProductPrescription.vue'
 
 export default {
     name: 'ExamReportStepThree',
-    components: {DrugSpecification, DrugPrescription},
+    components: {ProductSpecification, ProductPrescription},
     data() {
         return {
-            prescribedDrugs:[],
-            drugs:null,
+            prescribedProducts:[],
+            products:null,
             fields:[
-                { key: 'name', label: 'Drug name', sortable: true },
+                { key: 'name', label: 'Product name', sortable: true },
                 { key: 'manufacturer', label: 'Manufacturer', sortable: true},
-                { key: 'drugSpec', label: 'Drug specification'},
+                { key: 'productSpec', label: 'Product specification'},
                 { key: 'prescribe', label:'Prescribe'}
             ],
             filter :null,
             filterOn: ['name','manufacturer'],
-            drugSpecModal: {
-                id: 'drug-specifications-modal',
-                drug: null,
+            productSpecModal: {
+                id: 'product-specifications-modal',
+                product: null,
                 title: ''
             },
-            drugPrescriptionModal:{
-                id: 'drug-prescription-modal',
-                drug: null,
+            productPrescriptionModal:{
+                id: 'product-prescription-modal',
+                product: null,
                 title: ''
             }
         }
@@ -120,39 +120,39 @@ export default {
         back(){
             this.$router.push({ name: 'exam-report-step-two' })
         },
-        showDrugSpec(item,button){
-            this.drugSpecModal.drug = item
-            this.drugSpecModal.title = 'Drug ' + item.name
-            this.$root.$emit('bv::show::modal',this.drugSpecModal.id,button)
+        showProductSpec(item,button){
+            this.productSpecModal.product = item
+            this.productSpecModal.title = 'Product ' + item.name
+            this.$root.$emit('bv::show::modal',this.productSpecModal.id,button)
         },
-        showDrugPrescription(item,button){
-            this.drugPrescriptionModal.drug = item
-            this.drugPrescriptionModal.title ='Prescribe ' +  item.name
-            this.$root.$emit('bv::show::modal',this.drugPrescriptionModal.id,button)
+        showProductPrescription(item,button){
+            this.productPrescriptionModal.product = item
+            this.productPrescriptionModal.title ='Prescribe ' +  item.name
+            this.$root.$emit('bv::show::modal',this.productPrescriptionModal.id,button)
         },
-        fetchDrugs(){
-            axios.get(api.drugs.root).then(res=>{
-                this.drugs = res.data
+        fetchProducts(){
+            axios.get(api.products.root).then(res=>{
+                this.products = res.data
                 this.updatePrescribed()
             })
         },
-        clearDrugs(){
-            this.prescribedDrugs.forEach(drugPrescription => {
-                this.drugs.push(drugPrescription.drug)
+        clearProducts(){
+            this.prescribedProducts.forEach(productPrescription => {
+                this.products.push(productPrescription.product)
             })
-            this.prescribedDrugs=[]
-            this.$store.commit('clearPrescribedDrugs')
+            this.prescribedProducts=[]
+            this.$store.commit('clearPrescribedProducts')
         },
         updatePrescribed(){
-            this.prescribedDrugs=this.$store.state.report.appointmentReport.prescribedDrugs
+            this.prescribedProducts=this.$store.state.report.appointmentReport.prescribedProducts
 
-            if(this.prescribedDrugs!=null)
-                this.drugs.forEach(drug => {
-                    this.prescribedDrugs.forEach(prescribedDrug => {
-                        if(drug.id == prescribedDrug.drug.id){
-                            var index = this.drugs.indexOf(drug)
+            if(this.prescribedProducts!=null)
+                this.products.forEach(product => {
+                    this.prescribedProducts.forEach(prescribedProduct => {
+                        if(product.id == prescribedProduct.product.id){
+                            var index = this.products.indexOf(product)
                             if(index > -1)
-                                this.drugs.splice(index,1)
+                                this.products.splice(index,1)
                         }
                     })
                 })
@@ -160,7 +160,7 @@ export default {
         }
     },
     mounted(){
-        this.fetchDrugs()
+        this.fetchProducts()
         
         this.$root.$on('update::prescribed',() =>{
             this.updatePrescribed()

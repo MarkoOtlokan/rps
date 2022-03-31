@@ -4,12 +4,12 @@ import java.util.List;
 
 public class RateableEntitiesDto {
     private List<RatingPharmacyDto> pharmacies;
-    private List<RatingDrugDto> drugs;
+    private List<RatingProductDto> products;
 
     public RateableEntitiesDto(List<RatingPharmacyDto> pharmacies,
-                               List<RatingDrugDto> drugs) {
+                               List<RatingProductDto> products) {
         this.pharmacies = pharmacies;
-        this.drugs = drugs;
+        this.products = products;
     }
 
     public List<RatingPharmacyDto> getPharmacies() {
@@ -20,11 +20,11 @@ public class RateableEntitiesDto {
         this.pharmacies = pharmacies;
     }
 
-    public List<RatingDrugDto> getDrugs() {
-        return drugs;
+    public List<RatingProductDto> getProducts() {
+        return products;
     }
 
-    public void setDrugs(List<RatingDrugDto> drugs) {
-        this.drugs = drugs;
+    public void setProducts(List<RatingProductDto> products) {
+        this.products = products;
     }
 }

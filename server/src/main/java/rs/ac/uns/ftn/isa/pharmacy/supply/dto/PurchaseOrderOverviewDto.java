@@ -6,17 +6,17 @@ import java.util.List;
 public class PurchaseOrderOverviewDto {
     private long id;
     private LocalDateTime offerDeadline;
-    private List<OrderedDrugOverviewDto> orderedDrugs;
+    private List<OrderedProductOverviewDto> orderedProducts;
 
-    public PurchaseOrderOverviewDto(long id, LocalDateTime offerDeadline, List<OrderedDrugOverviewDto> orderedDrugs) {
+    public PurchaseOrderOverviewDto(long id, LocalDateTime offerDeadline, List<OrderedProductOverviewDto> orderedProducts) {
         this.id = id;
         this.offerDeadline = offerDeadline;
-        this.orderedDrugs = orderedDrugs;
+        this.orderedProducts = orderedProducts;
     }
 
-    public static class OrderedDrugOverviewDto {
+    public static class OrderedProductOverviewDto {
         private int amount;
-        private String drugName;
+        private String productName;
 
         public int getAmount() {
             return amount;
@@ -26,17 +26,17 @@ public class PurchaseOrderOverviewDto {
             this.amount = amount;
         }
 
-        public String getDrugName() {
-            return drugName;
+        public String getProductName() {
+            return productName;
         }
 
-        public void setDrugName(String drugName) {
-            this.drugName = drugName;
+        public void setProductName(String productName) {
+            this.productName = productName;
         }
 
-        public OrderedDrugOverviewDto(int amount, String drugName) {
+        public OrderedProductOverviewDto(int amount, String productName) {
             this.amount = amount;
-            this.drugName = drugName;
+            this.productName = productName;
         }
 
 
@@ -58,11 +58,11 @@ public class PurchaseOrderOverviewDto {
         this.offerDeadline = offerDeadline;
     }
 
-    public List<OrderedDrugOverviewDto> getOrderedDrugs() {
-        return orderedDrugs;
+    public List<OrderedProductOverviewDto> getOrderedProducts() {
+        return orderedProducts;
     }
 
-    public void setOrderedDrugs(List<OrderedDrugOverviewDto> orderedDrugs) {
-        this.orderedDrugs = orderedDrugs;
+    public void setOrderedProducts(List<OrderedProductOverviewDto> orderedProducts) {
+        this.orderedProducts = orderedProducts;
     }
 }

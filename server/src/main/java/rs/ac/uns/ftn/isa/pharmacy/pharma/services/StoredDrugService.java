@@ -1,54 +1,54 @@
 package rs.ac.uns.ftn.isa.pharmacy.pharma.services;
 
 import org.springframework.stereotype.Service;
-import rs.ac.uns.ftn.isa.pharmacy.mail.dtos.DrugNonExistentMailInfo;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.exceptions.DrugNotAvailableException;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.repository.DrugRepository;
+import rs.ac.uns.ftn.isa.pharmacy.mail.dtos.ProductNonExistentMailInfo;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.exceptions.ProductNotAvailableException;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.repository.ProductRepository;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.repository.PharmacyRepository;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.repository.StoredDrugRepository;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.repository.StoredProductRepository;
 import rs.ac.uns.ftn.isa.pharmacy.mail.services.EmailService;
 
 @Service
-public class StoredDrugService {
-    private final StoredDrugRepository storedDrugRepository;
+public class StoredProductService {
+    private final StoredProductRepository storedProductRepository;
     private final PharmacyRepository pharmacyRepository;
-    private final DrugRepository drugRepository;
+    private final ProductRepository productRepository;
     private final EmailService emailService;
 
-    public StoredDrugService(StoredDrugRepository storedDrugRepository, PharmacyRepository pharmacyRepository,
-                             DrugRepository drugRepository, EmailService emailService) {
-        this.storedDrugRepository = storedDrugRepository;
+    public StoredProductService(StoredProductRepository storedProductRepository, PharmacyRepository pharmacyRepository,
+                             ProductRepository productRepository, EmailService emailService) {
+        this.storedProductRepository = storedProductRepository;
         this.pharmacyRepository = pharmacyRepository;
-        this.drugRepository = drugRepository;
+        this.productRepository = productRepository;
         this.emailService = emailService;
     }
 
-    public void checkAvailability(long pharmacyId,long drugId) throws DrugNotAvailableException{
-        validateDrugExisting(pharmacyId, drugId);
-        validateDrugAvailable(pharmacyId, drugId);
+    public void checkAvailability(long pharmacyId,long productId) throws ProductNotAvailableException{
+        validateProductExisting(pharmacyId, productId);
+        validateProductAvailable(pharmacyId, productId);
     }
 
-    private void validateDrugAvailable(long pharmacyId, long drugId) throws DrugNotAvailableException {
-        if(!isAvailable(pharmacyId, drugId)){
-            var drug= storedDrugRepository.getOneFromPharmacy(pharmacyId, drugId);
-            emailService.sendInsufficientDrugQuantityMessage(drug);
-            throw new DrugNotAvailableException();
+    private void validateProductAvailable(long pharmacyId, long productId) throws ProductNotAvailableException {
+        if(!isAvailable(pharmacyId, productId)){
+            var product= storedProductRepository.getOneFromPharmacy(pharmacyId, productId);
+            emailService.sendInsufficientProductQuantityMessage(product);
+            throw new ProductNotAvailableException();
         }
     }
 
-    private void validateDrugExisting(long pharmacyId, long drugId) throws DrugNotAvailableException{
-        if(!existsInPharmacy(pharmacyId, drugId)){
-            emailService.sendDrugNonExistentMessage(new DrugNonExistentMailInfo(drugRepository.getOne(drugId),
+    private void validateProductExisting(long pharmacyId, long productId) throws ProductNotAvailableException{
+        if(!existsInPharmacy(pharmacyId, productId)){
+            emailService.sendProductNonExistentMessage(new ProductNonExistentMailInfo(productRepository.getOne(productId),
                     pharmacyRepository.getPharmacyAdmin(pharmacyId)));
-            throw new DrugNotAvailableException();
+            throw new ProductNotAvailableException();
         }
     }
 
-    private boolean existsInPharmacy(long pharmacyId, long drugId) {
-        return this.storedDrugRepository.getOneFromPharmacy(pharmacyId, drugId) != null;
+    private boolean existsInPharmacy(long pharmacyId, long productId) {
+        return this.storedProductRepository.getOneFromPharmacy(pharmacyId, productId) != null;
     }
 
-    private boolean isAvailable(long pharmacyId, long drugId){
-        return this.storedDrugRepository.quantityInPharmacy(pharmacyId,drugId) > 0;
+    private boolean isAvailable(long pharmacyId, long productId){
+        return this.storedProductRepository.quantityInPharmacy(pharmacyId,productId) > 0;
     }
 }

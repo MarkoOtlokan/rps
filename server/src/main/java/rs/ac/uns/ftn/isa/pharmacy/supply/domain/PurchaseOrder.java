@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Order created by a pharmacy for a specific set of Drugs.
+ * Order created by a pharmacy for a specific set of Products.
  */
 @Entity
 @Table(name = "purchase_order")
@@ -15,7 +15,7 @@ public class PurchaseOrder {
     private long id;
     private LocalDateTime offerDeadline;
     @OneToMany
-    private List<OrderedDrug> orderedDrugs;
+    private List<OrderedProduct> orderedProducts;
     private PurchaseOrder.Status status;
 
     public enum Status {
@@ -42,12 +42,12 @@ public class PurchaseOrder {
         this.offerDeadline = offerDeadline;
     }
 
-    public List<OrderedDrug> getOrderedDrugs() {
-        return orderedDrugs;
+    public List<OrderedProduct> getOrderedProducts() {
+        return orderedProducts;
     }
 
-    public void setOrderedDrugs(List<OrderedDrug> orderedDrugs) {
-        this.orderedDrugs = orderedDrugs;
+    public void setOrderedProducts(List<OrderedProduct> orderedProducts) {
+        this.orderedProducts = orderedProducts;
     }
 
     public Status getStatus() {

@@ -1,27 +1,27 @@
 package rs.ac.uns.ftn.isa.pharmacy.pharma.dtos;
 
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 
 import java.util.List;
 
-public class DrugCreationDto {
+public class ProductCreationDto {
 
-    private Drug drug;
-    private List<Integer> alternativeDrugIds;
+    private Product product;
+    private List<Integer> alternativeProductIds;
 
-    public Drug getDrug() {
-        return drug;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public List<Integer> getAlternativeDrugIds() {
-        return alternativeDrugIds;
+    public List<Integer> getAlternativeProductIds() {
+        return alternativeProductIds;
     }
 
-    public void setAlternativeDrugIds(List<Integer> alternativeDrugIds) {
-        this.alternativeDrugIds = alternativeDrugIds;
+    public void setAlternativeProductIds(List<Integer> alternativeProductIds) {
+        this.alternativeProductIds = alternativeProductIds;
     }
 }

@@ -8,7 +8,7 @@
     </b-row>
     <b-row align-h="center" class="mt-4" >
         <b-col sm="4">
-            <b-button variant="success" @click="back()"> Go back to a drug prescription step </b-button>
+            <b-button variant="success" @click="back()"> Go back to a product prescription step </b-button>
         </b-col>
         <b-col sm="4">
             <b-button variant="success" @click="proceed()"> Finish an examination </b-button>
@@ -33,13 +33,13 @@ export default {
                 appointmentId: this.$store.state.report.currentAppointment.appointmentId,
                 appointmentInfo: this.$store.state.report.appointmentReport.examinationInformation,
                 issueDate: new Date(),
-                prescribedDrugs: []
+                prescribedProducts: []
             }
-            let prescribedDrugs = this.$store.state.report.appointmentReport.prescribedDrugs
-            prescribedDrugs.forEach(drugPrescription => {
-                reportSubmissionDto.prescribedDrugs.push({
-                        drugId:drugPrescription.drug.id,
-                        duration:parseInt(drugPrescription.duration)
+            let prescribedProducts = this.$store.state.report.appointmentReport.prescribedProducts
+            prescribedProducts.forEach(productPrescription => {
+                reportSubmissionDto.prescribedProducts.push({
+                        productId:productPrescription.product.id,
+                        duration:parseInt(productPrescription.duration)
                     }
                 )
             })

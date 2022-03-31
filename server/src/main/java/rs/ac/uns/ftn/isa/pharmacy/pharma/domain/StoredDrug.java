@@ -6,8 +6,8 @@ import rs.ac.uns.ftn.isa.pharmacy.pharma.exceptions.QuantityException;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "stored_drugs")
-public class StoredDrug {
+@Table(name = "stored_products")
+public class StoredProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -17,7 +17,7 @@ public class StoredDrug {
     @Embedded
     private Price price;
     @ManyToOne
-    private Drug drug;
+    private Product product;
     @ManyToOne
     private Pharmacy pharmacy;
 
@@ -35,13 +35,13 @@ public class StoredDrug {
 
     public void setQuantity(long quantity) {
         if (quantity < 0) {
-            throw new QuantityException("There is not enough of the stored drug.");
+            throw new QuantityException("There is not enough of the stored product.");
         }
         this.quantity = quantity;
     }
     public void decrementQuantity(){
         if (quantity < 0) {
-            throw new QuantityException("There is not enough of the stored drug.");
+            throw new QuantityException("There is not enough of the stored product.");
         }
         this.quantity=-1;
 
@@ -55,12 +55,12 @@ public class StoredDrug {
         this.price = price;
     }
 
-    public Drug getDrug() {
-        return drug;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Pharmacy getPharmacy() {

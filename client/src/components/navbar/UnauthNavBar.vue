@@ -8,7 +8,7 @@
                     <router-link class="nav-link" to="/pharmacies"> Pharmacies </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/drugs"> Drugs </router-link>
+                    <router-link class="nav-link" to="/products"> Products </router-link>
                 </li>
             </ul>
             <ul class="navbar-nav">

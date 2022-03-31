@@ -1,6 +1,6 @@
 package rs.ac.uns.ftn.isa.pharmacy.users.user.dtos;
 
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 
 import java.util.List;
 

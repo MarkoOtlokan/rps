@@ -5,7 +5,7 @@
         <input type="text" class="form-control" placeholder="Search" v-model="searchString"/>
         <button class="btn btn-success ml-1" @click="search">Search</button>
     </div>
-    <div v-if="drugs.length > 0" class="d-flex justify-content-center p-1">
+    <div v-if="products.length > 0" class="d-flex justify-content-center p-1">
         <table class="table table-striped table-dark ">
             <tr>
                 <th>
@@ -16,9 +16,9 @@
                 </th>
             </tr>
             <tbody>
-                <tr v-for="drug in distinct(drugs)" v-bind:key="drug.id">
-                    <td>{{drug.name}}</td>
-                    <td>{{drug.manufacturer}}</td>
+                <tr v-for="product in distinct(products)" v-bind:key="product.id">
+                    <td>{{product.name}}</td>
+                    <td>{{product.manufacturer}}</td>
                 </tr>
             </tbody>
         </table>
@@ -35,20 +35,20 @@ export default {
     data: function () {
         return {
             view: 'reserve',
-            drugs: [],
+            products: [],
             searchString: '',
             reservations: []
         }
     },
     methods: {
         search: function () {
-            axios.get(api.drugs.clientSearch + '/' + this.searchString)
+            axios.get(api.products.clientSearch + '/' + this.searchString)
             .then(response => {
-                this.drugs = response.data
+                this.products = response.data
             })
         },
-        distinct: function (drugs) {
-            return drugs.filter((x, i, a) => a.map(drug => drug.drugId).indexOf(x.drugId) === i)
+        distinct: function (products) {
+            return products.filter((x, i, a) => a.map(product => product.productId).indexOf(x.productId) === i)
         },
         formatPrice: function (price) {
             return parseFloat(price).toFixed(2)

@@ -1,8 +1,8 @@
 package rs.ac.uns.ftn.isa.pharmacy.supply.exceptions;
 
-public class InsufficientDrugAmountException extends MessageException {
+public class InsufficientProductAmountException extends MessageException {
 
-    public InsufficientDrugAmountException() {
-        super("Insufficient drugs in stock.");
+    public InsufficientProductAmountException() {
+        super("Insufficient products in stock.");
     }
 }

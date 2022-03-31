@@ -9,7 +9,7 @@ import rs.ac.uns.ftn.isa.pharmacy.auth.model.Role;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.dtos.*;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.mappers.ClientInfoMapper;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.services.ClientService;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.services.DrugService;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.services.ProductService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,11 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("api/clients")
 public class ClientController {
     private final ClientService clientService;
-    private final DrugService drugService;
+    private final ProductService productService;
 
-    public ClientController(ClientService clientService, DrugService drugService) {
+    public ClientController(ClientService clientService, ProductService productService) {
         this.clientService = clientService;
-        this.drugService = drugService;
+        this.productService = productService;
     }
 
     @GetMapping("/profile-preview/{clientId}")

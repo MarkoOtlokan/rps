@@ -10,7 +10,7 @@
             <b-navbar-nav>
                 <b-nav-item class="ml-4" to="/pharmacist">Upcoming Counselings</b-nav-item>
                 <b-nav-item class="ml-4" to="/pharmacist/counseled-clients">Counseled Clients</b-nav-item>
-                <b-nav-item class="ml-4" to="/pharmacist/drug-dispensing">Drug dispensing</b-nav-item>
+                <b-nav-item class="ml-4" to="/pharmacist/product-dispensing">Product dispensing</b-nav-item>
             </b-navbar-nav>
 
             <b-navbar-nav class="ml-auto">

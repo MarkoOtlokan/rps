@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.isa.pharmacy.auth.HttpRequestUtil;
 import rs.ac.uns.ftn.isa.pharmacy.auth.IdentityProvider;
 import rs.ac.uns.ftn.isa.pharmacy.auth.model.Role;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.dtos.DrugReservationDto;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.mappers.DrugReservationMapper;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.services.DrugReservationService;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.dtos.ProductReservationDto;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.mappers.ProductReservationMapper;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.services.ProductReservationService;
 
 import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +16,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("api/drugs/reservations")
-public class DrugReservationController {
-    private final DrugReservationService drugReservationService;
+@RequestMapping("api/products/reservations")
+public class ProductReservationController {
+    private final ProductReservationService productReservationService;
 
-    public DrugReservationController(DrugReservationService drugReservationService) {
-        this.drugReservationService = drugReservationService;
+    public ProductReservationController(ProductReservationService productReservationService) {
+        this.productReservationService = productReservationService;
     }
 
     @Secured(Role.PHARMACIST)
@@ -29,8 +29,8 @@ public class DrugReservationController {
     public ResponseEntity<?> get(@PathVariable long reservationId, HttpServletRequest request){
         try {
             var identity = HttpRequestUtil.getIdentity(request);
-            var reservation = drugReservationService.getReserved(reservationId,identity.getRoleId());
-            return ResponseEntity.ok(DrugReservationMapper.objectToDto(reservation));
+            var reservation = productReservationService.getReserved(reservationId,identity.getRoleId());
+            return ResponseEntity.ok(ProductReservationMapper.objectToDto(reservation));
         }
         catch (PersistenceException e){
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -40,7 +40,7 @@ public class DrugReservationController {
     @DeleteMapping("dispense/{reservationId}")
     public ResponseEntity<?> dispense(@PathVariable long reservationId){
         try{
-            drugReservationService.dispense(reservationId);
+            productReservationService.dispense(reservationId);
             return ResponseEntity.ok().build();
         }
         catch (PersistenceException e){
@@ -50,24 +50,24 @@ public class DrugReservationController {
 
     @GetMapping()
     @Secured(Role.PATIENT)
-    public List<DrugReservationDto> findClientReservations(HttpServletRequest request) {
+    public List<ProductReservationDto> findClientReservations(HttpServletRequest request) {
         IdentityProvider identityProvider = HttpRequestUtil.getIdentity(request);
-        return drugReservationService.findClientReservations(identityProvider.getRoleId()).stream()
-                .map(DrugReservationMapper::objectToDto)
+        return productReservationService.findClientReservations(identityProvider.getRoleId()).stream()
+                .map(ProductReservationMapper::objectToDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping()
     @Secured(Role.PATIENT)
-    public void reserve(HttpServletRequest request, @RequestBody DrugReservationDto dto){
+    public void reserve(HttpServletRequest request, @RequestBody ProductReservationDto dto){
         IdentityProvider identityProvider = HttpRequestUtil.getIdentity(request);
-        drugReservationService.reserve(DrugReservationMapper.dtoToObject(dto), identityProvider.getRoleId());
+        productReservationService.reserve(ProductReservationMapper.dtoToObject(dto), identityProvider.getRoleId());
     }
 
     @DeleteMapping("{reservationId}")
     @Secured(Role.PATIENT)
     public void cancel(HttpServletRequest request, @PathVariable long reservationId) {
         IdentityProvider identityProvider = HttpRequestUtil.getIdentity(request);
-        drugReservationService.cancelReservation(reservationId, identityProvider.getRoleId());
+        productReservationService.cancelReservation(reservationId, identityProvider.getRoleId());
     }
 }

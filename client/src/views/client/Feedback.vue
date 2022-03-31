@@ -32,18 +32,18 @@
                 </table>
             </div>
             <div class=col>
-                <h5>Rate drugs</h5>
+                <h5>Rate products</h5>
                 <table class="table table-striped table-dark">
                     <tbody>
-                        <tr v-for="drug in drugs" v-bind:key="drug.id">
+                        <tr v-for="product in products" v-bind:key="product.id">
                             <td>
-                                {{drug.name}}
+                                {{product.name}}
                             </td>
                             <td>
-                                {{drug.manufacturer}}
+                                {{product.manufacturer}}
                             </td>
                             <td>
-                                <StarRating v-model="drug.rating" :star-size="20" @rating-selected="rateDrug(drug)"/>
+                                <StarRating v-model="product.rating" :star-size="20" @rating-selected="rateProduct(product)"/>
                             </td>
                         </tr>
                     </tbody>
@@ -78,7 +78,7 @@ export default {
         return {
             pharmacists: [],
             dermatologists: [],
-            drugs: [],
+            products: [],
             pharmacies: []
         }
     },
@@ -92,7 +92,7 @@ export default {
                 let rateable = response.data
                 this.pharmacists = rateable.pharmacists
                 this.dermatologists = rateable.dermatologists
-                this.drugs = rateable.drugs
+                this.products = rateable.products
                 this.pharmacies = rateable.pharmacies
             })
         },
@@ -118,14 +118,14 @@ export default {
             })
             .catch()
         },
-        rateDrug: function (drug) {
+        rateProduct: function (product) {
             let dto = {
-                id: drug.id,
-                rating: drug.rating
+                id: product.id,
+                rating: product.rating
             }
-            axios.post(api.rating.drug, dto)
+            axios.post(api.rating.product, dto)
             .then(() => {
-                this.$toast.open("Drug rated.")
+                this.$toast.open("Product rated.")
             })
             .catch()
         }

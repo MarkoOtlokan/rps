@@ -9,7 +9,7 @@ public class EPrescription {
     private String firstName;
     private String lastName;
     private LocalDateTime dispensingDate;
-    private List<EPrescriptionDrug> prescribedDrugs;
+    private List<EPrescriptionProduct> prescribedProducts;
 
     public long getId() {
         return id;
@@ -43,11 +43,11 @@ public class EPrescription {
         this.dispensingDate = dispensingDate;
     }
 
-    public List<EPrescriptionDrug> getPrescribedDrugs() {
-        return prescribedDrugs;
+    public List<EPrescriptionProduct> getPrescribedProducts() {
+        return prescribedProducts;
     }
 
-    public void setPrescribedDrugs(List<EPrescriptionDrug> prescribedDrugs) {
-        this.prescribedDrugs = prescribedDrugs;
+    public void setPrescribedProducts(List<EPrescriptionProduct> prescribedProducts) {
+        this.prescribedProducts = prescribedProducts;
     }
 }

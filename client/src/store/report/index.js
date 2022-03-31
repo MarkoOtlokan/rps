@@ -3,7 +3,7 @@ const reportModule = {
         currentAppointment: null,
         appointmentReport:{
             examinationInformation : '',
-            prescribedDrugs:[]
+            prescribedProducts:[]
         }
     },
 
@@ -14,16 +14,16 @@ const reportModule = {
         setExaminationInformation(state,payload){
             state.appointmentReport.examinationInformation = payload
         },
-        addPrescribedDrug(state,payload){
-            state.appointmentReport.prescribedDrugs.push(payload)
+        addPrescribedProduct(state,payload){
+            state.appointmentReport.prescribedProducts.push(payload)
         },
-        clearPrescribedDrugs(state){
-            state.appointmentReport.prescribedDrugs = []
+        clearPrescribedProducts(state){
+            state.appointmentReport.prescribedProducts = []
         },
         clearAppointmentReport(state){
             state.currentAppointment = null
             state.appointmentReport.examinationInformation = ''
-            state.appointmentReport.prescribedDrugs = []
+            state.appointmentReport.prescribedProducts = []
 
         }
     }

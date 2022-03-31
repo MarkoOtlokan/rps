@@ -14,7 +14,7 @@ public class Supplier {
     @OneToOne()
     private Person person;
     @OneToMany
-    private List<SupplierStock> drugsInStock;
+    private List<SupplierStock> productsInStock;
     @OneToMany
     private List<Offer> offers;
 
@@ -34,12 +34,12 @@ public class Supplier {
         this.person = person;
     }
 
-    public List<SupplierStock> getDrugsInStock() {
-        return drugsInStock;
+    public List<SupplierStock> getProductsInStock() {
+        return productsInStock;
     }
 
-    public void setDrugsInStock(List<SupplierStock> drugsInStock) {
-        this.drugsInStock = drugsInStock;
+    public void setProductsInStock(List<SupplierStock> productsInStock) {
+        this.productsInStock = productsInStock;
     }
 
     public List<Offer> getOffers() {

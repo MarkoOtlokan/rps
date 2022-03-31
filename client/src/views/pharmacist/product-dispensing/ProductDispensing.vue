@@ -2,7 +2,7 @@
     <b-container>
         <b-col>
             <b-row align-h="center" class="mt-5 mb-3">
-                <h2> Drug dispensing</h2>
+                <h2> Product dispensing</h2>
             </b-row>
             <b-row align-h="center" class="mt-5">
                 <b-col cols="2">
@@ -25,31 +25,31 @@
                     </b-input-group>
                 </b-col>
             </b-row>
-            <b-row align-h="center" class="mt-4" v-if="foundDrugReservation != null">
+            <b-row align-h="center" class="mt-4" v-if="foundProductReservation != null">
                 <b-card title="Reservation found!" sub-title="Reservation info:" style="width: 50%">
                     <b-card-text class="mt-2">
                         <b-col align-self="start">
                             <b-row class="mb-2 ml-1" >
-                                Drug:
+                                Product:
                             </b-row>
                             <b-row class="ml-3" >
-                                Manufacturer : {{foundDrugReservation.manufacturer}}
+                                Manufacturer : {{foundProductReservation.manufacturer}}
                             </b-row>
                             <b-row class="ml-3" > 
-                                Name: {{foundDrugReservation.name}}
+                                Name: {{foundProductReservation.name}}
                             </b-row>
                             <b-row class="ml-3" > 
-                                Quantity: {{foundDrugReservation.quantity}} units
+                                Quantity: {{foundProductReservation.quantity}} units
                             </b-row>
                             <b-row class="ml-3" >
-                                Price per unit: {{foundDrugReservation.price.amount.amount + " " +
-                                foundDrugReservation.price.amount.currency}}
+                                Price per unit: {{foundProductReservation.price.amount.amount + " " +
+                                foundProductReservation.price.amount.currency}}
                             </b-row>
 
                             <b-row class="mt-3 ml-1" >
                                 <b>
-                                    Total price : {{foundDrugReservation.quantity*foundDrugReservation.price.amount.amount
-                                     + ' ' + foundDrugReservation.price.amount.currency}} 
+                                    Total price : {{foundProductReservation.quantity*foundProductReservation.price.amount.amount
+                                     + ' ' + foundProductReservation.price.amount.currency}} 
                                 </b>
                             </b-row>
                             <b-row class="mt-3" align-h="center" >
@@ -69,18 +69,18 @@
 import axios from 'axios'
 import { api } from '../../../api.js'
 export default {
-    name:'DrugDispensing',
+    name:'ProductDispensing',
     data() {
         return {
             reservationId:'',
-            foundDrugReservation:null
+            foundProductReservation:null
         }
     },
     methods:{
         search(){
-            axios.get(api.drugs.reservations + this.reservationId )
+            axios.get(api.products.reservations + this.reservationId )
             .then(res=>{
-                this.foundDrugReservation = res.data
+                this.foundProductReservation = res.data
             })
             .catch(err=>{
                 if(err.response.status == 400)
@@ -88,10 +88,10 @@ export default {
             })
         },
         dispense(){
-            axios.delete(api.drugs.dispense + this.reservationId).
+            axios.delete(api.products.dispense + this.reservationId).
             then(res=>{
-                this.$toast.open('Drug successfully dispensed')
-                this.foundDrugReservation = null
+                this.$toast.open('Product successfully dispensed')
+                this.foundProductReservation = null
                 this.reservationId = ""
             })
         }

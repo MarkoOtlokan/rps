@@ -1,12 +1,12 @@
 package rs.ac.uns.ftn.isa.pharmacy.users.user.dtos;
 
-public class RatingDrugDto {
+public class RatingProductDto {
     private long id;
     private String name;
     private double rating;
     private String manufacturer;
 
-    public RatingDrugDto(long id, String name, double rating, String manufacturer) {
+    public RatingProductDto(long id, String name, double rating, String manufacturer) {
         this.id = id;
         this.name = name;
         this.rating = rating;

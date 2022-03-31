@@ -1,11 +1,11 @@
 package rs.ac.uns.ftn.isa.pharmacy.supply.dto;
 
-import rs.ac.uns.ftn.isa.pharmacy.supply.domain.OrderedDrug;
+import rs.ac.uns.ftn.isa.pharmacy.supply.domain.OrderedProduct;
 
-public class OrderedDrugMapper {
-    public static PurchaseOrderOverviewDto.OrderedDrugOverviewDto objectToDto(OrderedDrug orderedDrug) {
-        return new PurchaseOrderOverviewDto.OrderedDrugOverviewDto(
-                orderedDrug.getAmount(), orderedDrug.getDrug().getName()
+public class OrderedProductMapper {
+    public static PurchaseOrderOverviewDto.OrderedProductOverviewDto objectToDto(OrderedProduct orderedProduct) {
+        return new PurchaseOrderOverviewDto.OrderedProductOverviewDto(
+                orderedProduct.getAmount(), orderedProduct.getProduct().getName()
         );
     }
 }

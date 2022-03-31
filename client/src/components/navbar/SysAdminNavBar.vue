@@ -22,7 +22,7 @@
           </div>
         </li>
         <router-link to="/sys/complaints" class="nav-link">Complaints</router-link>
-        <router-link to="/sys/drugs" class="nav-link">Add drugs</router-link>
+        <router-link to="/sys/products" class="nav-link">Add products</router-link>
       </ul>
 
 

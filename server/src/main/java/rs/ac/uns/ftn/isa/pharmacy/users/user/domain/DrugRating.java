@@ -1,22 +1,22 @@
 package rs.ac.uns.ftn.isa.pharmacy.users.user.domain;
 
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class DrugRating extends Rating {
+public class ProductRating extends Rating {
     @ManyToOne
-    @JoinColumn(name="drug_id")
-    private Drug drug;
+    @JoinColumn(name="product_id")
+    private Product product;
 
-    public Drug getDrug() {
-        return drug;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

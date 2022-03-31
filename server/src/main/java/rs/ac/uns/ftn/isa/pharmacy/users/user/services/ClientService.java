@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import rs.ac.uns.ftn.isa.pharmacy.auth.dto.RegistrationDto;
 import rs.ac.uns.ftn.isa.pharmacy.auth.service.RegistrationService;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 import rs.ac.uns.ftn.isa.pharmacy.supply.exceptions.EntityExistsException;
 import rs.ac.uns.ftn.isa.pharmacy.supply.exceptions.InvalidEntityException;
 import rs.ac.uns.ftn.isa.pharmacy.users.person.domain.Person;

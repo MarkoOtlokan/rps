@@ -1,6 +1,6 @@
 package rs.ac.uns.ftn.isa.pharmacy.pharma.domain;
 
-public class EPrescriptionDrug {
+public class EPrescriptionProduct {
 
     private long id;
     private String name;

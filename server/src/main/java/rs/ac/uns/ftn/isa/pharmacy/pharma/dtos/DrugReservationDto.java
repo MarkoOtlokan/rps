@@ -4,8 +4,8 @@ import rs.ac.uns.ftn.isa.pharmacy.finance.Price;
 
 import java.time.LocalDate;
 
-public class DrugReservationDto {
-    private long storedDrugId;
+public class ProductReservationDto {
+    private long storedProductId;
     private int quantity;
     private LocalDate pickUpBefore;
 
@@ -15,10 +15,10 @@ public class DrugReservationDto {
     private String pharmacyName;
     private Price price;
 
-    public DrugReservationDto() {
+    public ProductReservationDto() {
     }
 
-    public DrugReservationDto(long reservationId,
+    public ProductReservationDto(long reservationId,
                               String name,
                               String manufacturer,
                               String pharmacyName,
@@ -35,12 +35,12 @@ public class DrugReservationDto {
 
     }
 
-    public long getStoredDrugId() {
-        return storedDrugId;
+    public long getStoredProductId() {
+        return storedProductId;
     }
 
-    public void setStoredDrugId(long storedDrugId) {
-        this.storedDrugId = storedDrugId;
+    public void setStoredProductId(long storedProductId) {
+        this.storedProductId = storedProductId;
     }
 
     public int getQuantity() {

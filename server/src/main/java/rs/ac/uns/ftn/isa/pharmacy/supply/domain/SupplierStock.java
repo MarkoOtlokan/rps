@@ -1,14 +1,14 @@
 package rs.ac.uns.ftn.isa.pharmacy.supply.domain;
 
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 
 import javax.persistence.*;
 
 /**
- * Amount of a specific drug which a given Supplier has in stock at the moment.
+ * Amount of a specific product which a given Supplier has in stock at the moment.
  */
 @Entity
-@Table(name = "supplier_drug_stock")
+@Table(name = "supplier_product_stock")
 public class SupplierStock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +16,7 @@ public class SupplierStock {
     @OneToOne
     private Supplier supplier;
     @OneToOne
-    private Drug drug;
+    private Product product;
     private int amount;
 
     public long getId() {
@@ -35,12 +35,12 @@ public class SupplierStock {
         this.supplier = supplier;
     }
 
-    public Drug getDrug() {
-        return drug;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getAmount() {

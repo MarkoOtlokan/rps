@@ -4,30 +4,30 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content text-dark">
                 <div class="modal-header">
-                    <h5 class="modal-title">Reserve drug</h5>
+                    <h5 class="modal-title">Reserve product</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body text-left" v-if="selectedDrug">
-                    <b>Drug:</b> {{selectedDrug.name}}<br/><hr>
-                    <b>Manufacturer:</b> {{selectedDrug.manufacturer}}<br/><hr>
-                    <b>Price:</b> {{formatPrice(selectedDrug.price.amount.amount) + selectedDrug.price.amount.currency}}<br/><hr>
+                <div class="modal-body text-left" v-if="selectedProduct">
+                    <b>Product:</b> {{selectedProduct.name}}<br/><hr>
+                    <b>Manufacturer:</b> {{selectedProduct.manufacturer}}<br/><hr>
+                    <b>Price:</b> {{formatPrice(selectedProduct.price.amount.amount) + selectedProduct.price.amount.currency}}<br/><hr>
                     <div class="form-inline">
                         <b class="mr-2">Select Pharmacy:</b>
-                        <select class="form-control" v-model="selectedDrug">
+                        <select class="form-control" v-model="selectedProduct">
                             <option 
-                                v-for="storedDrug in availableStoredDrugs" 
-                                v-bind:key="storedDrug.storedDrugId" 
-                                v-bind:value="storedDrug">
-                                {{storedDrug.pharmacyName}}
+                                v-for="storedProduct in availableStoredProducts" 
+                                v-bind:key="storedProduct.storedProductId" 
+                                v-bind:value="storedProduct">
+                                {{storedProduct.pharmacyName}}
                             </option>
                         </select>
                     </div>
                     <hr>
                     <div class="form-inline">
-                        <b class="mr-2">Select quantity:</b><input type="number" min="1" v-bind:max="selectedDrug.quantity" class="form-control col-sm-2" v-model="quantity"/>
-                        <div class="ml-2 text-info"><b>{{selectedDrug.quantity}} avaliable</b></div>
+                        <b class="mr-2">Select quantity:</b><input type="number" min="1" v-bind:max="selectedProduct.quantity" class="form-control col-sm-2" v-model="quantity"/>
+                        <div class="ml-2 text-info"><b>{{selectedProduct.quantity}} avaliable</b></div>
                     </div>
                     <hr>
                     <div class="form-inline">
@@ -51,11 +51,11 @@
                     </div>
                 </div>
                 <div v-else>
-                    <b>No drug selected.</b>
+                    <b>No product selected.</b>
                 </div>
                 <div class="modal-footer">
-                    <div v-if="selectedDrug">
-                        <b>Total price:</b> {{formatPrice(selectedDrug.price.amount.amount * quantity) + selectedDrug.price.amount.currency}}
+                    <div v-if="selectedProduct">
+                        <b>Total price:</b> {{formatPrice(selectedProduct.price.amount.amount * quantity) + selectedProduct.price.amount.currency}}
                         <button type="button" class="btn btn-success" data-dismiss="modal" @click="reserve">Confirm</button>
                     </div>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Abort</button>
@@ -65,7 +65,7 @@
     </div>
     <div class="btn-group btn-group-toggle my-1" data-toggle="buttons">
         <label class="btn btn-info" active>
-            <input type="radio" v-model="view" value="reserve" checked> Reserve drug
+            <input type="radio" v-model="view" value="reserve" checked> Reserve product
         </label>
         <label class="btn btn-info">
             <input type="radio" v-model="view" value="view"> Your reservations
@@ -73,8 +73,8 @@
     </div>
 
     <div>
-      <b-modal size="lg" :title="drugSpecModal.title" :id="drugSpecModal.id" ok-only>
-        <drug-specification :drug="drugSpecModal.drug"></drug-specification>
+      <b-modal size="lg" :title="productSpecModal.title" :id="productSpecModal.id" ok-only>
+        <product-specification :product="productSpecModal.product"></product-specification>
       </b-modal>
     </div>
 
@@ -83,13 +83,13 @@
             <input type="text" class="form-control" placeholder="Search" v-model="searchString"/>
             <button class="btn btn-success ml-1" @click="search">Search</button>
 
-            <select class="form-control ml-5" v-model="filters.selectedDrugType">
+            <select class="form-control ml-5" v-model="filters.selectedProductType">
                 <option
-                  v-for="drugType in filters.drugTypes"
-                  v-bind:key="drugType"
-                  v-bind:value="drugType"
+                  v-for="productType in filters.productTypes"
+                  v-bind:key="productType"
+                  v-bind:value="productType"
                 >
-                  {{drugType}}
+                  {{productType}}
                 </option>
             </select>
 
@@ -108,7 +108,7 @@
             </b-button>
 
         </div>
-        <div v-if="displayedDrugs.length > 0" class="d-flex justify-content-center p-1">
+        <div v-if="displayedProducts.length > 0" class="d-flex justify-content-center p-1">
             <table class="table table-striped table-dark">
                 <tr>
                     <th>
@@ -118,7 +118,7 @@
                         Manufacturer
                     </th>
                     <th>
-                      Drug type
+                      Product type
                     </th>
                     <th>
                       Rating
@@ -126,13 +126,13 @@
                     <th></th>
                 </tr>
                 <tbody>
-                    <tr v-for="drug in distinct(displayedDrugs)" v-bind:key="drug.id">
-                        <td>{{drug.name}}</td>
-                        <td>{{drug.manufacturer}}</td>
-                        <td>{{drug.drugType}}</td>
-                        <td>{{drug.rating === 0 ? "N/A" : drug.rating}}</td>
-                        <td><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal" @click="select(drug.drugId)">Reserve</button></td>
-                        <td><button class="btn btn-sm btn-info" @click="showSpecification(drug, $event.target)">Specification</button></td>
+                    <tr v-for="product in distinct(displayedProducts)" v-bind:key="product.id">
+                        <td>{{product.name}}</td>
+                        <td>{{product.manufacturer}}</td>
+                        <td>{{product.productType}}</td>
+                        <td>{{product.rating === 0 ? "N/A" : product.rating}}</td>
+                        <td><button class="btn btn-sm btn-success" data-toggle="modal" data-target="#modal" @click="select(product.productId)">Reserve</button></td>
+                        <td><button class="btn btn-sm btn-info" @click="showSpecification(product, $event.target)">Specification</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -189,105 +189,105 @@ import { api } from '../../api.js'
 import axios from 'axios'
 import DatePicker from 'v-calendar/lib/components/date-picker.umd'
 import { format, isPast, subDays } from 'date-fns'
-import DrugSpecification from "@/components/report/DrugSpecification";
+import ProductSpecification from "@/components/report/ProductSpecification";
 
 export default {
     data: function () {
         return {
             view: 'reserve',
 
-            displayedDrugs: [],
-            allDrugs: [],
+            displayedProducts: [],
+            allProducts: [],
 
             filters: {
-                drugTypes: [],
+                productTypes: [],
                 ratings: [],
-                selectedDrugType: "All",
+                selectedProductType: "All",
                 selectedRating: "All"
             },
 
             searchString: '',
-            selectedDrug: null,
-            availableStoredDrugs: [],
-            selectedStoredDrug: null,
+            selectedProduct: null,
+            availableStoredProducts: [],
+            selectedStoredProduct: null,
             quantity: 1,
             minDate: new Date(),
             date: new Date(),
             reservations: [],
 
-            drugSpecModal: {
-              id: 'drug-specifications-modal',
-              drug: undefined,
+            productSpecModal: {
+              id: 'product-specifications-modal',
+              product: undefined,
               title: ''
             },
         }
     },
     components: {
-        DatePicker, DrugSpecification
+        DatePicker, ProductSpecification
     },
     mounted: function () {
         this.fetchReservations()
     },
     methods: {
         search: function () {
-            axios.get(api.drugs.clientSearch + '/' + this.searchString)
+            axios.get(api.products.clientSearch + '/' + this.searchString)
             .then(response => {
-                this.allDrugs = response.data;
-                this.displayedDrugs = this.allDrugs
+                this.allProducts = response.data;
+                this.displayedProducts = this.allProducts
 
-                this.filters.drugTypes = ["All"];
+                this.filters.productTypes = ["All"];
                 this.filters.ratings = ["All"];
-                this.filters.selectedDrugType = "All";
+                this.filters.selectedProductType = "All";
                 this.filters.selectedRating = "All";
 
-                this.allDrugs.forEach(drug => {
-                    if (!this.filters.drugTypes.includes(drug.drugType)) {
-                        this.filters.drugTypes.push(drug.drugType);
+                this.allProducts.forEach(product => {
+                    if (!this.filters.productTypes.includes(product.productType)) {
+                        this.filters.productTypes.push(product.productType);
                     }
-                    if (!this.filters.ratings.includes(drug.rating)) {
-                        this.filters.ratings.push(drug.rating);
+                    if (!this.filters.ratings.includes(product.rating)) {
+                        this.filters.ratings.push(product.rating);
                     }
                 });
             })
         },
         filter: function() {
-            this.displayedDrugs = [];
-            for (let i = 0; i < this.allDrugs.length; i++) {
-                let drug = this.allDrugs[i];
-                if (this.filters.selectedRating !== "All" && this.filters.selectedRating !== drug.rating) {
+            this.displayedProducts = [];
+            for (let i = 0; i < this.allProducts.length; i++) {
+                let product = this.allProducts[i];
+                if (this.filters.selectedRating !== "All" && this.filters.selectedRating !== product.rating) {
                     continue;
                 }
-                if (this.filters.selectedDrugType !== "All" && this.filters.selectedDrugType !== drug.drugType) {
+                if (this.filters.selectedProductType !== "All" && this.filters.selectedProductType !== product.productType) {
                     continue;
                 }
-                this.displayedDrugs.push(drug);
+                this.displayedProducts.push(product);
             }
         },
-        select: function (drugId) {
-            this.availableStoredDrugs = []
-            this.displayedDrugs.forEach(drug => {
-                if (drug.drugId === drugId) {
-                    this.availableStoredDrugs.push(drug)
+        select: function (productId) {
+            this.availableStoredProducts = []
+            this.displayedProducts.forEach(product => {
+                if (product.productId === productId) {
+                    this.availableStoredProducts.push(product)
                 }
             })
-            this.selectedDrug = this.availableStoredDrugs[0]
+            this.selectedProduct = this.availableStoredProducts[0]
             this.date = new Date()
             this.quantity = 1
         },
-        showSpecification: function(drug, button) {
-            console.log(drug);
-            this.drugSpecModal.drug = drug
-            this.drugSpecModal.title = 'Drug ' + drug.name
-            this.$root.$emit('bv::show::modal', this.drugSpecModal.id, button)
-            this.$bvModal.show("drug-specifications-modal")
+        showSpecification: function(product, button) {
+            console.log(product);
+            this.productSpecModal.product = product
+            this.productSpecModal.title = 'Product ' + product.name
+            this.$root.$emit('bv::show::modal', this.productSpecModal.id, button)
+            this.$bvModal.show("product-specifications-modal")
         },
         reserve: function () {
             let dto = {
-                storedDrugId: this.selectedDrug.storedDrugId,
+                storedProductId: this.selectedProduct.storedProductId,
                 quantity: this.quantity,
                 pickUpBefore: this.date
             }
-            axios.post(api.drugs.reservations, dto)
+            axios.post(api.products.reservations, dto)
             .then(() => {
                 this.$toast.open('Successfully reserved.')
                 this.search()
@@ -298,7 +298,7 @@ export default {
             })
         },
         cancel: function (reservationId) {
-            axios.delete(api.drugs.reservations + reservationId)
+            axios.delete(api.products.reservations + reservationId)
             .then(() => {
                 this.fetchReservations()
                 this.$toast.open("Reservation successfully canceled.")
@@ -307,8 +307,8 @@ export default {
                 this.$toast.error(error.response.data)
             })
         },
-        distinct: function (drugs) {
-            return drugs.filter((x, i, a) => a.map(drug => drug.drugId).indexOf(x.drugId) === i)
+        distinct: function (products) {
+            return products.filter((x, i, a) => a.map(product => product.productId).indexOf(x.productId) === i)
         },
         formatPrice: function (price) {
             return parseFloat(price).toFixed(2)
@@ -317,7 +317,7 @@ export default {
             return format(new Date(date), "dd.MM.yyyy.")
         },
         fetchReservations: function () {
-            axios.get(api.drugs.reservations)
+            axios.get(api.products.reservations)
             .then(response => {
                 this.reservations = response.data
             })

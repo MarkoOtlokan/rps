@@ -1,20 +1,20 @@
 package rs.ac.uns.ftn.isa.pharmacy.supply.domain;
 
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 
 import javax.persistence.*;
 
 /**
- * Drug which is being ordered by a Pharmacy through PurchaseOrder, in a specific amount.
+ * Product which is being ordered by a Pharmacy through PurchaseOrder, in a specific amount.
  */
 @Entity
-@Table(name = "ordered_drug")
-public class OrderedDrug {
+@Table(name = "ordered_product")
+public class OrderedProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @OneToOne
-    private Drug drug;
+    private Product product;
     @OneToOne
     private PurchaseOrder order;
     private int amount;
@@ -27,12 +27,12 @@ public class OrderedDrug {
         this.id = id;
     }
 
-    public Drug getDrug() {
-        return drug;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setDrug(Drug drug) {
-        this.drug = drug;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public PurchaseOrder getOrder() {

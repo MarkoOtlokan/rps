@@ -2,37 +2,37 @@ package rs.ac.uns.ftn.isa.pharmacy.pharma.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import rs.ac.uns.ftn.isa.pharmacy.supply.exceptions.InvalidEntityException;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.DrugRating;
+import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.ProductRating;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Rating;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "drugs")
-@SequenceGenerator(name = "drug_seq", initialValue = 100)
-public class Drug {
+@Table(name = "products")
+@SequenceGenerator(name = "product_seq", initialValue = 100)
+public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drug_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
     private long id;
     private String name;
-    private Drug.Type drugType;
-    private Drug.IntakeType intakeType;
+    private Product.Type productType;
+    private Product.IntakeType intakeType;
     @ElementCollection
     private List<String> ingredients;
     private String manufacturer;
     private boolean requiresPrescription;
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<Drug> alternatives;
+    private List<Product> alternatives;
     private String additionalNotes;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy ="drug")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy ="product")
     @JsonIgnore
-    private List<DrugRating> ratings;
+    private List<ProductRating> ratings;
 
     public void validate() throws InvalidEntityException {
         if (name == null || name.isEmpty()) throw new InvalidEntityException("Name");
-        if (drugType == null) throw new InvalidEntityException("Drug type");
+        if (productType == null) throw new InvalidEntityException("Product type");
         if (intakeType == null) throw new InvalidEntityException("Intake type");
         if (ingredients == null || ingredients.isEmpty()) throw new InvalidEntityException("Ingredients");
         if (manufacturer == null || manufacturer.isEmpty()) throw new InvalidEntityException("Manufacturer");
@@ -63,12 +63,12 @@ public class Drug {
         this.name = name;
     }
 
-    public Type getDrugType() {
-        return drugType;
+    public Type getProductType() {
+        return productType;
     }
 
-    public void setDrugType(Type drugType) {
-        this.drugType = drugType;
+    public void setProductType(Type productType) {
+        this.productType = productType;
     }
 
     public IntakeType getIntakeType() {
@@ -103,11 +103,11 @@ public class Drug {
         this.requiresPrescription = requiresPrescription;
     }
 
-    public List<Drug> getAlternatives() {
+    public List<Product> getAlternatives() {
         return alternatives;
     }
 
-    public void setAlternatives(List<Drug> alternatives) {
+    public void setAlternatives(List<Product> alternatives) {
         this.alternatives = alternatives;
     }
 
@@ -129,11 +129,11 @@ public class Drug {
         return totalRating / size;
     }
 
-    public List<DrugRating> getRatings() {
+    public List<ProductRating> getRatings() {
         return ratings;
     }
 
-    public void setRatings(List<DrugRating> ratings) {
+    public void setRatings(List<ProductRating> ratings) {
         this.ratings = ratings;
     }
 }

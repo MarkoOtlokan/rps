@@ -5,10 +5,10 @@ import rs.ac.uns.ftn.isa.pharmacy.supply.dto.OfferMapper;
 import rs.ac.uns.ftn.isa.pharmacy.supply.dto.OfferRequestDto;
 import rs.ac.uns.ftn.isa.pharmacy.supply.exceptions.*;
 import rs.ac.uns.ftn.isa.pharmacy.supply.domain.Offer;
-import rs.ac.uns.ftn.isa.pharmacy.supply.domain.OrderedDrug;
+import rs.ac.uns.ftn.isa.pharmacy.supply.domain.OrderedProduct;
 import rs.ac.uns.ftn.isa.pharmacy.supply.domain.SupplierStock;
 import rs.ac.uns.ftn.isa.pharmacy.supply.repository.OfferRepository;
-import rs.ac.uns.ftn.isa.pharmacy.supply.repository.OrderedDrugRepository;
+import rs.ac.uns.ftn.isa.pharmacy.supply.repository.OrderedProductRepository;
 import rs.ac.uns.ftn.isa.pharmacy.supply.repository.SupplierStockRepository;
 
 import java.util.List;
@@ -18,25 +18,25 @@ import java.util.Optional;
 public class OfferService {
 
     private final OfferRepository offerRepository;
-    private final OrderedDrugRepository orderedDrugRepository;
+    private final OrderedProductRepository orderedProductRepository;
     private final SupplierStockRepository supplierStockRepository;
     private final OfferMapper offerMapper;
 
     public OfferService(
             OfferRepository offerRepository,
-            OrderedDrugRepository orderedDrugRepository,
+            OrderedProductRepository orderedProductRepository,
             SupplierStockRepository supplierStockRepository,
             OfferMapper offerMapper
     ) {
         this.offerRepository = offerRepository;
-        this.orderedDrugRepository = orderedDrugRepository;
+        this.orderedProductRepository = orderedProductRepository;
         this.supplierStockRepository = supplierStockRepository;
         this.offerMapper = offerMapper;
     }
 
     public void create(OfferRequestDto dto)
             throws InvalidEntityException, LateDeadlineException, InvalidForeignKeyException,
-            EntityExistsException, InsufficientDrugAmountException, ExpiredException
+            EntityExistsException, InsufficientProductAmountException, ExpiredException
     {
         Offer offer = offerMapper.dtoToObject(dto);
         offer.validateBeforeChange();
@@ -46,7 +46,7 @@ public class OfferService {
             offer.setStatus(Offer.Status.PENDING);
             offerRepository.save(offer);
         }
-        else throw new InsufficientDrugAmountException();
+        else throw new InsufficientProductAmountException();
     }
 
     public void update(OfferRequestDto dto)
@@ -73,12 +73,12 @@ public class OfferService {
     }
 
     private boolean isSupplierStockedUp(long purchaseOrderId, long supplierId) {
-        List<OrderedDrug> orderedDrugs = orderedDrugRepository.getByPurchaseOrderId(purchaseOrderId);
+        List<OrderedProduct> orderedProducts = orderedProductRepository.getByPurchaseOrderId(purchaseOrderId);
         List<SupplierStock> supplierStocks = supplierStockRepository.getBySupplierId(supplierId);
 
-        for (OrderedDrug orderedDrug : orderedDrugs) {
-            Optional<SupplierStock> drugInStock = supplierStocks.stream().findAny();
-            if (drugInStock.isEmpty() || drugInStock.get().getAmount() < orderedDrug.getAmount())
+        for (OrderedProduct orderedProduct : orderedProducts) {
+            Optional<SupplierStock> productInStock = supplierStocks.stream().findAny();
+            if (productInStock.isEmpty() || productInStock.get().getAmount() < orderedProduct.getAmount())
                 return false;
         }
 

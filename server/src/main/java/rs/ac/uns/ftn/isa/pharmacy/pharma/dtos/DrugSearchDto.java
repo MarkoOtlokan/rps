@@ -1,11 +1,11 @@
 package rs.ac.uns.ftn.isa.pharmacy.pharma.dtos;
 
 import rs.ac.uns.ftn.isa.pharmacy.finance.Price;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
+import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 
-public class DrugSearchDto {
-    private long storedDrugId;
-    private long drugId;
+public class ProductSearchDto {
+    private long storedProductId;
+    private long productId;
     private String name;
     private long quantity;
     private Price price;
@@ -13,13 +13,13 @@ public class DrugSearchDto {
     private long pharmacyId;
     private String pharmacyName;
     private String additionalNotes;
-    private Drug.IntakeType intakeType;
-    private Drug.Type drugType;
+    private Product.IntakeType intakeType;
+    private Product.Type productType;
     private double rating;
 
-    public DrugSearchDto(long storedDrugId, long drugId, String name, long quantity, Price price, String manufacturer, long pharmacyId, String pharmacyName, String additionalNotes, Drug.IntakeType intakeType, Drug.Type drugType, double rating) {
-        this.storedDrugId = storedDrugId;
-        this.drugId = drugId;
+    public ProductSearchDto(long storedProductId, long productId, String name, long quantity, Price price, String manufacturer, long pharmacyId, String pharmacyName, String additionalNotes, Product.IntakeType intakeType, Product.Type productType, double rating) {
+        this.storedProductId = storedProductId;
+        this.productId = productId;
         this.name = name;
         this.quantity = quantity;
         this.price = price;
@@ -28,24 +28,24 @@ public class DrugSearchDto {
         this.pharmacyName = pharmacyName;
         this.additionalNotes = additionalNotes;
         this.intakeType = intakeType;
-        this.drugType = drugType;
+        this.productType = productType;
         this.rating = rating;
     }
 
-    public long getStoredDrugId() {
-        return storedDrugId;
+    public long getStoredProductId() {
+        return storedProductId;
     }
 
-    public void setStoredDrugId(long storedDrugId) {
-        this.storedDrugId = storedDrugId;
+    public void setStoredProductId(long storedProductId) {
+        this.storedProductId = storedProductId;
     }
 
-    public long getDrugId() {
-        return drugId;
+    public long getProductId() {
+        return productId;
     }
 
-    public void setDrugId(long drugId) {
-        this.drugId = drugId;
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
     public String getName() {
@@ -104,20 +104,20 @@ public class DrugSearchDto {
         this.additionalNotes = additionalNotes;
     }
 
-    public Drug.IntakeType getIntakeType() {
+    public Product.IntakeType getIntakeType() {
         return intakeType;
     }
 
-    public void setIntakeType(Drug.IntakeType intakeType) {
+    public void setIntakeType(Product.IntakeType intakeType) {
         this.intakeType = intakeType;
     }
 
-    public Drug.Type getDrugType() {
-        return drugType;
+    public Product.Type getProductType() {
+        return productType;
     }
 
-    public void setDrugType(Drug.Type drugType) {
-        this.drugType = drugType;
+    public void setProductType(Product.Type productType) {
+        this.productType = productType;
     }
 
     public double getRating() {
