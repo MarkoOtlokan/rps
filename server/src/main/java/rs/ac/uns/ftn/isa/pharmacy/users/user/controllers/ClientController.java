@@ -1,25 +1,17 @@
 package rs.ac.uns.ftn.isa.pharmacy.users.user.controllers;
 
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.uns.ftn.isa.pharmacy.auth.HttpRequestUtil;
 import rs.ac.uns.ftn.isa.pharmacy.auth.IdentityProvider;
 import rs.ac.uns.ftn.isa.pharmacy.auth.model.Role;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Drug;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.dtos.*;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.mappers.ClientInfoMapper;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.mappers.PatientBasicInfoMapper;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.mappers.PatientInfoMapper;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.services.ClientService;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.services.PatientService;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.services.DrugService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/clients")

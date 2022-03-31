@@ -74,21 +74,6 @@ public class Employee {
         return false;
     }
 
-    public boolean isOccupied(Term term) {
-        for(var shift : shifts){
-            if(shift.hasScheduledExam(term))
-                return true;
-        }
-        return false;
-    }
-
-    public Shift getAdequateShift(Term term) {
-        for(var shift : shifts)
-            if(term.isInRange(shift.getStart(),shift.getEnd()))
-                return shift;
-        return null;
-    }
-
     public double getRating() {
         double totalRating = 0;
         int size = this.ratings.size();

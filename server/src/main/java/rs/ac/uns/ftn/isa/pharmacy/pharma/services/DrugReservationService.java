@@ -10,12 +10,11 @@ import rs.ac.uns.ftn.isa.pharmacy.pharma.exceptions.AllergyException;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.exceptions.DateException;
 import rs.ac.uns.ftn.isa.pharmacy.exceptions.EntityNotFoundException;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.repository.StoredDrugRepository;
-import rs.ac.uns.ftn.isa.pharmacy.schedule.exceptions.PenaltiesException;
 import rs.ac.uns.ftn.isa.pharmacy.users.employee.repository.EmployeeRepository;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.repository.DrugReservationRepository;
 import rs.ac.uns.ftn.isa.pharmacy.mail.services.EmailService;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Patient;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.repository.PatientRepository;
+import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Client;
+import rs.ac.uns.ftn.isa.pharmacy.users.user.repository.ClientRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,18 +26,18 @@ public class DrugReservationService {
     private final DrugReservationRepository reservationRepository;
     private final EmployeeRepository employeeRepository;
     private final EmailService emailService;
-    private final PatientRepository patientRepository;
+    private final ClientRepository clientRepository;
     private final StoredDrugRepository storedDrugRepository;
 
     public DrugReservationService(DrugReservationRepository reservationRepository,
                                   EmployeeRepository employeeRepository,
                                   EmailService emailService,
-                                  PatientRepository patientRepository,
+                                  ClientRepository clientRepository,
                                   StoredDrugRepository storedDrugRepository) {
         this.reservationRepository = reservationRepository;
         this.employeeRepository = employeeRepository;
         this.emailService = emailService;
-        this.patientRepository = patientRepository;
+        this.clientRepository = clientRepository;
         this.storedDrugRepository = storedDrugRepository;
     }
 
@@ -74,11 +73,8 @@ public class DrugReservationService {
 
     @Transactional
     public void reserve(DrugReservation drugReservation, long patientId) {
-        var patient = patientRepository.findById(patientId)
-                .orElseThrow(() -> new EntityNotFoundException(Patient.class.getSimpleName(), patientId));
-        if(patient.isBanned()) {
-            throw new PenaltiesException("Patient has 3 or more penalties.");
-        }
+        var patient = clientRepository.findById(patientId)
+                .orElseThrow(() -> new EntityNotFoundException(Client.class.getSimpleName(), patientId));
         var storedDrug = storedDrugRepository.findById(drugReservation.getStoredDrug().getId())
                 .orElseThrow(() -> new EntityNotFoundException(
                         StoredDrug.class.getSimpleName(),
@@ -86,9 +82,6 @@ public class DrugReservationService {
                 );
         if (drugReservation.isInPast()) {
             throw new DateException();
-        }
-        if (patient.getAllergicTo().stream().anyMatch(d -> d.getId() == storedDrug.getDrug().getId())) {
-            throw new AllergyException();
         }
         drugReservation.setPatient(patient);
         drugReservation.setStoredDrug(storedDrug);
@@ -124,8 +117,8 @@ public class DrugReservationService {
         return reservationRepository.findExpired(now);
     }
 
-    public List<DrugReservation> findPatientReservations(long patientId) {
-        return reservationRepository.findAllByPatientId(patientId).stream()
+    public List<DrugReservation> findPatientReservations(long clientId) {
+        return reservationRepository.findAllByClientId(clientId).stream()
                 .filter(res -> !res.isDispensed())
                 .collect(Collectors.toList());
     }
@@ -134,8 +127,8 @@ public class DrugReservationService {
         reservationRepository.deleteById(id);
     }
 
-    public List<DrugReservation> findPatientReservationHistory(long patientId) {
-        return reservationRepository.findAllByPatientId(patientId).stream()
+    public List<DrugReservation> findPatientReservationHistory(long clinetId) {
+        return reservationRepository.findAllByClientId(clinetId).stream()
                 .filter(res -> res.isDispensed())
                 .collect(Collectors.toList());
     }

@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface DrugRatingRepository extends JpaRepository<DrugRating, Long> {
-    Optional<DrugRating> findByDrugIdAndPatientId(long drugId, long patientId);
+    Optional<DrugRating> findByDrugIdAndClientId(long drugId, long clientId);
 }

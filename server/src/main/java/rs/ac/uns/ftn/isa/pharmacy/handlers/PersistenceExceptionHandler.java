@@ -9,7 +9,6 @@ import rs.ac.uns.ftn.isa.pharmacy.exceptions.*;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.exceptions.AllergyException;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.exceptions.DateException;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.exceptions.QuantityException;
-import rs.ac.uns.ftn.isa.pharmacy.schedule.exceptions.*;
 
 @ControllerAdvice
 public class PersistenceExceptionHandler {
@@ -25,34 +24,6 @@ public class PersistenceExceptionHandler {
     @ExceptionHandler(EntityAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     String entityAlreadyExistsHandler(EntityAlreadyExistsException e) {
-        return e.getMessage();
-    }
-
-    @ResponseBody
-    @ExceptionHandler(AppointmentTimeException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String appointmentTimeHandler(AppointmentTimeException e) {
-        return e.getMessage();
-    }
-
-    @ResponseBody
-    @ExceptionHandler(PatientOccupiedException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String patientOccupied(PatientOccupiedException e) {
-        return e.getMessage();
-    }
-
-    @ResponseBody
-    @ExceptionHandler(EmployeeOccupiedException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String employeeOccupied(EmployeeOccupiedException e){
-        return e.getMessage();
-    }
-
-    @ResponseBody
-    @ExceptionHandler(EmployeeShiftException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String employeeShiftHandler(EmployeeShiftException e){
         return e.getMessage();
     }
 
@@ -78,23 +49,10 @@ public class PersistenceExceptionHandler {
     }
 
     @ResponseBody
-    @ExceptionHandler(NoUpcomingAppointmentsException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String noUpcomingAppointmentsHandler(NoUpcomingAppointmentsException e){
-        return e.getMessage();
-    }
-
-    @ResponseBody
     @ExceptionHandler(AllergyException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     String allergyHandler(AllergyException e){
         return e.getMessage();
     }
 
-    @ResponseBody
-    @ExceptionHandler(PenaltiesException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String penaltyHandler(PenaltiesException e){
-        return e.getMessage();
-    }
 }

@@ -11,7 +11,7 @@ public abstract class Rating {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @ManyToOne
-    private Patient patient;
+    private Client client;
     private double rating;
 
     public long getId() {
@@ -22,12 +22,12 @@ public abstract class Rating {
         this.id = id;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public Client getClient() {
+        return client;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public double getRating() {

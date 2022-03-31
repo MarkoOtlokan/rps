@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Client;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Patient;
 
 import java.util.List;
 

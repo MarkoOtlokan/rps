@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface DrugReservationRepository extends JpaRepository<DrugReservation, Long> {
-    List<DrugReservation> findAllByPatientId(long patientId);
+    List<DrugReservation> findAllByClientId(long clientId);
 
     @Query("select dr from DrugReservation dr where dr.pickUpBefore < :now")
     List<DrugReservation> findExpired(@Param("now") LocalDate now);

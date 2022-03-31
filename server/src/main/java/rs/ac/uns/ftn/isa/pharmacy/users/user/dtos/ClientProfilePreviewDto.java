@@ -2,7 +2,6 @@ package rs.ac.uns.ftn.isa.pharmacy.users.user.dtos;
 
 import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Client;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Gender;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Patient;
 
 import java.time.LocalDate;
 

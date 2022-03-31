@@ -9,10 +9,8 @@ import rs.ac.uns.ftn.isa.pharmacy.supply.exceptions.EntityExistsException;
 import rs.ac.uns.ftn.isa.pharmacy.supply.exceptions.InvalidEntityException;
 import rs.ac.uns.ftn.isa.pharmacy.users.person.domain.Person;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Client;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Patient;
 import rs.ac.uns.ftn.isa.pharmacy.exceptions.EntityNotFoundException;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.repository.ClientRepository;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.repository.PatientRepository;
 
 import java.util.List;
 
@@ -37,7 +35,7 @@ public class ClientService {
             client.setId(id);
             return clientRepository.save(client);
         }
-        throw new EntityNotFoundException(Patient.class.getSimpleName(), id);
+        throw new EntityNotFoundException(Client.class.getSimpleName(), id);
     }
 
 

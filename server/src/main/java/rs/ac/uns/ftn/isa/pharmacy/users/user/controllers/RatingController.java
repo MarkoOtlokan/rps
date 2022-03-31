@@ -32,8 +32,6 @@ public class RatingController {
     public RateableEntitiesDto getPatientPharmacistHistory(HttpServletRequest request) {
         IdentityProvider identityProvider = HttpRequestUtil.getIdentity(request);
         return RateableEntitiesMapper.objectsToDto(
-                ratingService.getPatientPharmacistHistory(identityProvider.getRoleId()),
-                ratingService.getPatientDermatologistHistory(identityProvider.getRoleId()),
                 ratingService.getPatientDrugHistory(identityProvider.getRoleId()),
                 ratingService.getPatientPharmacyHistory(identityProvider.getRoleId())
         );

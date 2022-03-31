@@ -9,18 +9,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RateableEntitiesMapper {
-    public static RateableEntitiesDto objectsToDto(List<Employee> pharmacists,
-                                                   List<Employee> dermatologists,
-                                                   List<Drug> drugs,
+    public static RateableEntitiesDto objectsToDto(List<Drug> drugs,
                                                    List<Pharmacy> pharmacies) {
-        var pharmacistDtos = pharmacists.stream()
-                .map(RatingEmployeeMapper::objectToDto).collect(Collectors.toList());
-        var dermatologistDtos = dermatologists.stream()
-                .map(RatingEmployeeMapper::objectToDto).collect(Collectors.toList());
+
         var drugDtos = drugs.stream()
                 .map(RatingDrugMapper::objectToDto).collect(Collectors.toList());
         var pharmacyDtos = pharmacies.stream()
                 .map(RatingPharmacyMapper::objectToDto).collect(Collectors.toList());
-        return new RateableEntitiesDto(pharmacistDtos, dermatologistDtos, pharmacyDtos, drugDtos);
+        return new RateableEntitiesDto(pharmacyDtos, drugDtos);
     }
 }

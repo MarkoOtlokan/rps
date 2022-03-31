@@ -20,7 +20,7 @@ import rs.ac.uns.ftn.isa.pharmacy.auth.model.Credentials;
 import rs.ac.uns.ftn.isa.pharmacy.auth.service.RegistrationService;
 import rs.ac.uns.ftn.isa.pharmacy.supply.exceptions.EntityNotFoundException;
 import rs.ac.uns.ftn.isa.pharmacy.supply.exceptions.MessageException;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.services.PatientService;
+import rs.ac.uns.ftn.isa.pharmacy.users.user.services.ClientService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.UUID;
@@ -32,20 +32,20 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final CredentialsService credentialsService;
-    private final PatientService patientService;
     private final CredentialsTokenMapper credentialsTokenMapper;
+    private final ClientService clientService;
 
     public AuthController(
             AuthenticationManager authenticationManager,
             JwtService jwtService,
             CredentialsService credentialsService,
-            PatientService patientService,
+            ClientService clientService,
             CredentialsTokenMapper credentialsTokenMapper
     ){
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
         this.credentialsService = credentialsService;
-        this.patientService = patientService;
+        this.clientService = clientService;
         this.credentialsTokenMapper = credentialsTokenMapper;
     }
 
@@ -71,7 +71,7 @@ public class AuthController {
     @PostMapping("register")
     public ResponseEntity<?> register(@RequestBody RegistrationDto dto) {
         try {
-            patientService.register(dto);
+            clientService.register(dto);
             return ResponseEntity.ok().build();
         }
         catch (MessageException e) {

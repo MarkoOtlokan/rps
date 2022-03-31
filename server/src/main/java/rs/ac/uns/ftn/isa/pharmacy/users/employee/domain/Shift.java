@@ -1,7 +1,6 @@
 package rs.ac.uns.ftn.isa.pharmacy.users.employee.domain;
 
 import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Pharmacy;
-import rs.ac.uns.ftn.isa.pharmacy.schedule.domain.Appointment;
 
 import javax.persistence.*;
 import java.time.Duration;
@@ -16,8 +15,6 @@ public class Shift {
     private long id;
     private LocalDateTime start;
     private LocalDateTime end;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "shift")
-    private List<Appointment> appointments;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name="pharmacy_id")
     private Pharmacy pharmacy;
@@ -49,14 +46,6 @@ public class Shift {
         this.end = end;
     }
 
-    public List<Appointment> getAppointments() {
-        return appointments;
-    }
-
-    public void setAppointments(List<Appointment> appointments) {
-        this.appointments = appointments;
-    }
-
     public Pharmacy getPharmacy() {
         return pharmacy;
     }
@@ -73,13 +62,6 @@ public class Shift {
         this.employee = employee;
     }
 
-    public boolean hasScheduledExam(Term term) {
-        for(var appointment : appointments)
-            if(appointment.overlaps(term))
-                return true;
-
-        return false;
-    }
 
     /**
      * Get shift as a {@link Term} object that represents the beginning, duration and the end of shift.

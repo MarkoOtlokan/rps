@@ -1,6 +1,6 @@
 package rs.ac.uns.ftn.isa.pharmacy.pharma.domain;
 
-import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Patient;
+import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Client;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.exceptions.DateException;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.exceptions.QuantityException;
 
@@ -14,7 +14,7 @@ public class DrugReservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @ManyToOne
-    private Patient patient;
+    private Client client;
     @ManyToOne
     private StoredDrug storedDrug;
     private LocalDate pickUpBefore;
@@ -29,12 +29,12 @@ public class DrugReservation {
         this.id = id;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public Client getPatient() {
+        return client;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatient(Client patient) {
+        this.client = patient;
     }
 
     public StoredDrug getStoredDrug() {
