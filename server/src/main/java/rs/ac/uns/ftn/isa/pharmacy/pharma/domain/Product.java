@@ -3,7 +3,6 @@ package rs.ac.uns.ftn.isa.pharmacy.pharma.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import rs.ac.uns.ftn.isa.pharmacy.supply.exceptions.InvalidEntityException;
 import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.ProductRating;
-import rs.ac.uns.ftn.isa.pharmacy.users.user.domain.Rating;
 
 import javax.persistence.*;
 import java.util.List;

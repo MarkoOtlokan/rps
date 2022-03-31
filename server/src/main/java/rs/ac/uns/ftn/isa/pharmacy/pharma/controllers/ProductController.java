@@ -10,7 +10,6 @@ import rs.ac.uns.ftn.isa.pharmacy.auth.IdentityProvider;
 import rs.ac.uns.ftn.isa.pharmacy.auth.model.Role;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.domain.Product;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.dtos.*;
-import rs.ac.uns.ftn.isa.pharmacy.pharma.mappers.ProductReservationMapper;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.mappers.ProductSearchMapper;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.mappers.ProductSimpleMapper;
 import rs.ac.uns.ftn.isa.pharmacy.pharma.mappers.StoredProductMapper;
